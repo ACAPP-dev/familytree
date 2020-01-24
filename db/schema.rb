@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200124012409) do
+ActiveRecord::Schema.define(version: 2020_01_24_215111) do
 
   create_table "families", force: :cascade do |t|
     t.string "surname"
@@ -19,6 +18,27 @@ ActiveRecord::Schema.define(version: 20200124012409) do
     t.string "logo"
     t.string "color"
     t.string "photo"
+  end
+
+  create_table "familymembers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "married_last_name"
+    t.string "gender"
+    t.string "birth_date"
+    t.string "death_date"
+    t.string "home_town"
+    t.string "photo1"
+    t.string "photo2"
+    t.integer "family_id"
+    t.integer "user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.string "relation_type"
+    t.integer "familymember_id_from"
+    t.integer "familymember_id_to"
+    t.string "description"
   end
 
 end
