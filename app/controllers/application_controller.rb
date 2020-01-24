@@ -11,4 +11,12 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  get "/familymembers/new" do
+    erb :new
+  end
+
+  post "/familymembers" do
+
+  end
+
 end
