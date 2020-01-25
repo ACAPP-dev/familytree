@@ -1,7 +1,13 @@
 <h1>Create New Family Member!</h1>
 
 <form action="/familymembers" method="post">
-
-
+    <label for="first_name">First Name</label>
+    <input type="text" name="first_name"/>
+    <label for="last_name">Last Name</label>
+    <input type="text" name="last_name"/><br/>
+    <label for="gender">Select Gender</label>
+    <input type="radio" name="gender" value="male"> Male<br>
+    <input type="radio" name="gender" value="female"> Female<br><br/>
+    <input type="submit" name="submit">
 
 </form>

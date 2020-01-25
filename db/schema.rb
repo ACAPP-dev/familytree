@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 2020_01_24_232521) do
     t.string "photo"
   end
 
+  create_table "familymember_relationships", force: :cascade do |t|
+    t.integer "familymember_id"
+    t.integer "relationship_id"
+  end
+
   create_table "familymembers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -32,11 +37,6 @@ ActiveRecord::Schema.define(version: 2020_01_24_232521) do
     t.string "photo2"
     t.integer "family_id"
     t.integer "user_id"
-  end
-
-  create_table "familymembers_relationships", force: :cascade do |t|
-    t.integer "familymember_id"
-    t.integer "relationship_id"
   end
 
   create_table "relationships", force: :cascade do |t|
