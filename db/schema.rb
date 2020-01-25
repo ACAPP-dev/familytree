@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 2020_01_24_232521) do
     t.string "photo"
   end
 
-  create_table "familymember_relationships", force: :cascade do |t|
+  create_table "familyjoins", force: :cascade do |t|
     t.integer "familymember_id"
     t.integer "relationship_id"
+    t.index ["familymember_id"], name: "index_familyjoins_on_familymember_id"
+    t.index ["relationship_id"], name: "index_familyjoins_on_relationship_id"
   end
 
   create_table "familymembers", force: :cascade do |t|
@@ -41,8 +43,6 @@ ActiveRecord::Schema.define(version: 2020_01_24_232521) do
 
   create_table "relationships", force: :cascade do |t|
     t.string "relation_type"
-    t.integer "familymember_id_from"
-    t.integer "familymember_id_to"
     t.string "description"
   end
 
