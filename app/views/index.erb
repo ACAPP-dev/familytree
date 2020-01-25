@@ -3,8 +3,30 @@
 <h2>Families</h2>
     <% @families.each do |family| %>
        <p> 
-        
+        <%= family.id %>
         <%= family.surname %> 
+       </p>
+    <% end %>
+
+<h2>Family Members</h2>
+    <% @familymembers.each do |member| %>
+       <p> Member:
+        <%= member.id %>
+        <%= member.first_name %> 
+        <%= member.last_name %>
+        <%= member.gender %>
+        <h3>Relationships</h3>
+        <% rel = @relation_join.find_by(familymember_id: member.id) %>
+        <%= @relations.find(rel.relationship_id).relation_type %> of:
+        <% p rel_of = @relation_join.select(relationship_id: rel.relationship_id) %>
+        <%= "@familymembers.find(rel_of.familymember_id).first_name" %>
+       </p>
+    <% end %>
        
+<h2>Relationships</h2>
+    <% @relations.each do |relation| %>
+       <p> 
+        <%= relation.id %>
+        <%= relation.relation_type %> 
        </p>
     <% end %>
