@@ -6,7 +6,8 @@ Familyjoin.delete_all
 family = Family.create(surname: 'Capp')
 
 rel1 = Relationship.create(relation_type: 'spouse', description: 'Andrew-Sharon')
-rel2 = Relationship.create(relation_type: 'parent_child', description: 'Andrew and Sharon family')
+rel2 = Relationship.create(relation_type: 'child', description: 'Andrew and Sharon family')
+rel3 = Relationship.create(relation_type: 'parent', description: 'parents Andrew and Sharon')
 
 familymembers1 = [
     {first_name: 'Andrew', last_name: 'Capp', gender: 'male'},
@@ -18,7 +19,7 @@ familymembers1.each do |member|
     a.families = family
     #binding.pry
     a.relationships << rel1
-    a.relationships << rel2
+    a.relationships << rel3
     a.save
 end
 
