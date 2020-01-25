@@ -16,6 +16,13 @@ class ApplicationController < Sinatra::Base
     erb :new
   end
 
+  get "/familymembers" do
+    @families = Family.all
+    @familymembers = Familymember.all
+    @relations = Relationship.all
+    erb :index
+  end
+
   post "/familymembers" do
     a = Familymember.new(first_name: params[:first_name], last_name: params[:last_name], gender: params[:gender])
     a.save
