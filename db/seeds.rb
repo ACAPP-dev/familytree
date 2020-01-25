@@ -16,7 +16,7 @@ familymembers1 = [
 
 familymembers1.each do |member| 
     a = Familymember.new(member)
-    a.families = family
+    a.family = family
     #binding.pry
     a.relationships << rel1
     a.relationships << rel3
@@ -32,7 +32,10 @@ familymembers2 = [
 
 familymembers2.each do |member| 
     a = Familymember.new(member)
-    a.families = family
+    a.family = family
+    #binding.pry
+    rel2.familymember = Familymember.find_by(first_name: 'Andrew')
+    rel2.save
     a.relationships << rel2
     a.save
 end
