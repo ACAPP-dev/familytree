@@ -26,6 +26,7 @@ class ApplicationController < Sinatra::Base
 
   post "/familymembers" do
     a = Familymember.new(first_name: params[:first_name], last_name: params[:last_name], gender: params[:gender])
+    binding.pry
     a.save
     redirect "/familymembers/#{a.id}"
   end

@@ -1,13 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>New Family Member</title>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/new.css">
+
+</head>
+
+<body>
+
+
+
 <h1>Create New Family Member!</h1>
 
-<form action="/familymembers" method="post">
-    <label for="first_name">First Name</label>
-    <input type="text" name="first_name"/>
-    <label for="last_name">Last Name</label>
-    <input type="text" name="last_name"/><br/>
-    <label for="gender">Select Gender</label>
-    <input type="radio" name="gender" value="male"> Male<br>
-    <input type="radio" name="gender" value="female"> Female<br><br/>
-    <input type="submit" name="submit">
+<div class="container">
+    
+    <form action="/familymembers" method="post">
+        <div class="col col-1">
+            <label for="[familymember]first_name">First Name</label>
+            <input type="text" name="[familymember]first_name"/>
+            <label for="[familymember]last_name">Last Name</label>
+            <input type="text" name="[familymember]last_name"/><br/><br/>
+            <p><label for="[familymember]gender">Select Gender: </label>
+            <input type="radio" name="[familymember]gender" value="male"> Male   <span>
+            <input type="radio" name="[familymember]gender" value="female"> Female<br/></span></p>
+           
+        </div>
+        <div class="col col-2">
+            <h3>Select Spouse</h3>
+            <p>Choose "No Spouse" if none or if name does not appear in list</p>
+            <select name="[familymember][relationships][]relation_type" size="2">
+                <option value="spouse">Spouse</option>
+                <option value="none">No Spouse</option>
+            </select><br/><br/>
+            <p>Select Spouse from List Below</p>
+            <select name="[familymember][relationships][]related_familymember" size="10">
+                <% @members.each do |member| %>
+                    <option value="<% "#{member.id}" %>">
+                    <%= member.first_name %>
+                    </option>
+                <% end %>
+            </select><br/><br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        <div class="col col-3">
+        <h3>Select Parent</h3>
+        <p>Choose "None" if name does not appear in list</p>
+        <select name="[familymember][relationships][]relation_type" size="2">
+            <option value="parent">Father</option>
+            <option value="none">None</option>
+        </select><br/><br/>
+        <p>Select FATHER from List Below</p>
+        <select name="[familymember][relationships][]related_familymember" size="10">
+            <% @members.each do |member| %>
+                <% if member.gender == "male" %>
+                    <option value= "<% #{member.id} %>">
+                    <%= member.first_name %> <%= member.last_name %>
+                    </option>
+                <% end %>
+            <% end %>
+        </select><br/><br/>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+        <div class="submit">
+            <p>Click Submit Button to Save</p>
+            <input type="submit" name="submit">
+        </div>
+    </form>
 
-</form>
+</div>
+</body>
+</html>

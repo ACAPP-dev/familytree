@@ -1,0 +1,31 @@
+
+h1, h3 {
+    text-align: center;
+}
+
+
+.col {
+    height: 400px;
+    float: left;
+    border: 1px solid black;
+}
+
+.col-1 {
+    width: 45%;
+    
+}
+
+.col-2 {
+    width: 25%;
+    
+}
+
+.col-3 {
+    width: 25%;
+    
+}
+
+.submit {
+    width: 50%;
+    margin: 20px auto;
+}
