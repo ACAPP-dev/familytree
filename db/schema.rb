@@ -44,8 +44,6 @@ ActiveRecord::Schema.define(version: 2020_01_24_232521) do
   create_table "relationships", force: :cascade do |t|
     t.string "relation_type"
     t.string "description"
-    t.integer "dad_id"
-    t.integer "mom_id"
   end
 
 end

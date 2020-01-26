@@ -7,6 +7,8 @@ class  CreateFamilyjoins < ActiveRecord::Migration[5.2]
      create_table :familyjoins do |t|
       t.belongs_to :familymember
       t.belongs_to :relationship
+      #t.belongs_to :dad, :class_name => "Familymember"
+      #t.belongs_to :mom, :class_name => "Familymember"
     end
   end
 end

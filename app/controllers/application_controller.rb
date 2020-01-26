@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
     @families = Family.all
     @familymembers = Familymember.all
     @relations = Relationship.all
-    @relation_join = FamilymemberRelationship.all
+    #@relation_join = FamilymemberRelationship.all
     erb :index
   end
 
