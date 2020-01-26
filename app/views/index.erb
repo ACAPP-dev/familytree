@@ -19,7 +19,7 @@
         <% member.relationships.each do |relationship| %>
         <%= relationship.relation_type %> of:
         <% #binding.pry %>
-        <%= relationship.familymembers.first.first_name %>
+        <%= relationship.related_familymember.first_name %>
         
         <% end %>
        </p>

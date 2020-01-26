@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_24_232521) do
+ActiveRecord::Schema.define(version: 2020_01_24_215111) do
 
   create_table "families", force: :cascade do |t|
     t.string "surname"
@@ -18,13 +18,6 @@ ActiveRecord::Schema.define(version: 2020_01_24_232521) do
     t.string "logo"
     t.string "color"
     t.string "photo"
-  end
-
-  create_table "familyjoins", force: :cascade do |t|
-    t.integer "familymember_id"
-    t.integer "relationship_id"
-    t.index ["familymember_id"], name: "index_familyjoins_on_familymember_id"
-    t.index ["relationship_id"], name: "index_familyjoins_on_relationship_id"
   end
 
   create_table "familymembers", force: :cascade do |t|
@@ -42,8 +35,11 @@ ActiveRecord::Schema.define(version: 2020_01_24_232521) do
   end
 
   create_table "relationships", force: :cascade do |t|
+    t.integer "familymember_id"
     t.string "relation_type"
     t.string "description"
+    t.integer "related_familymember_id"
+    t.index ["related_familymember_id"], name: "index_relationships_on_related_familymember_id"
   end
 
 end
