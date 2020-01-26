@@ -18,6 +18,7 @@
         <h4>Relationships</h4>
         <% member.relationships.each do |relationship| %>
         <%= relationship.relation_type %> of:
+        <% #binding.pry %>
         <%= relationship.familymembers.first.first_name %>
         
         <% end %>
