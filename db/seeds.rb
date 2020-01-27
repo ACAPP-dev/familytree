@@ -49,7 +49,7 @@ familymembers2 = [
 familymembers2.each do |member| 
     a = Familymember.new(member)
     a.family = family
-    rel2 = Relationship.create(relation_type: 'child', description: 'Andrew and Sharon family')
+    rel2 = Relationship.create(relation_type: 'parent', description: 'Andrew and Sharon family')
     rel2.related_familymember = Familymember.find_by(first_name: 'Andrew')
     rel2.save
     a.relationships << rel2

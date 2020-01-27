@@ -17,7 +17,7 @@
         <%= member.gender %>
         <h4>Relationships</h4>
         <% member.relationships.each do |relationship| %>
-        <%= relationship.relation_type %> of:
+        <%= relationship.relation_type.capitalize %>:
         <% #binding.pry %>
         <%= relationship.related_familymember.first_name %>
         

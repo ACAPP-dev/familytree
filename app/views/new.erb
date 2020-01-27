@@ -38,8 +38,8 @@
             <p>Select Spouse from List Below</p>
             <select name="[familymember][relationships][]related_familymember" size="10">
                 <% @members.each do |member| %>
-                    <option value="<% "#{member.id}" %>">
-                    <%= member.first_name %>
+                    <%= "<option value=#{member.id}>" %>
+                    <%= member.first_name %> <%= member.last_name %>
                     </option>
                 <% end %>
             </select><br/><br/>
@@ -58,7 +58,7 @@
         <select name="[familymember][relationships][]related_familymember" size="10">
             <% @members.each do |member| %>
                 <% if member.gender == "male" %>
-                    <option value= "<% #{member.id} %>">
+                    <%= "<option value=#{member.id}>" %>
                     <%= member.first_name %> <%= member.last_name %>
                     </option>
                 <% end %>
