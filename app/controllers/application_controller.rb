@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
     a.family = family_object
    # binding.pry
     params[:familymember][:relationships].each do |relationship|
-      binding.pry
+      #binding.pry
       related_familymember_object = Familymember.find(relationship[:related_familymember])
       rel = Relationship.new(relation_type: relationship[:relation_type])
       rel.related_familymember = related_familymember_object
