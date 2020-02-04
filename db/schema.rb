@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_24_215111) do
+ActiveRecord::Schema.define(version: 2020_02_04_220908) do
 
   create_table "families", force: :cascade do |t|
     t.string "surname"
@@ -30,16 +30,31 @@ ActiveRecord::Schema.define(version: 2020_01_24_215111) do
     t.string "home_town"
     t.string "photo1"
     t.string "photo2"
+    t.string "story"
     t.integer "family_id"
-    t.integer "user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "familymember_id"
     t.string "relation_type"
-    t.string "description"
+    t.integer "familymember_id"
     t.integer "related_familymember_id"
-    t.index ["related_familymember_id"], name: "index_relationships_on_related_familymember_id"
+    t.string "description"
+  end
+
+  create_table "user_families", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "family_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "username"
+    t.string "password_digest"
+    t.string "created_time_stamp"
+    t.boolean "enabled"
+    t.string "updated_time_stamp"
   end
 
 end

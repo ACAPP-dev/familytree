@@ -1,24 +1,33 @@
+User.delete_all
 Family.delete_all
 Familymember.delete_all
 Relationship.delete_all
-#Familyjoin.delete_all
+UserFamily.delete_all
 
+user = User.create(username: "acapp", password: "5555")
 family = Family.create(surname: 'Capp')
+user.families << family
+user.save
+family.users << user
+family.save
 
-#rel1 = Relationship.create(relation_type: 'spouse', description: 'Andrew-Sharon')
-#rel2 = Relationship.create(relation_type: 'child', description: 'Andrew and Sharon family')
-#rel3 = Relationship.create(relation_type: 'parent', description: 'parents Andrew and Sharon')
+familymember1 = Familymember.create(first_name: 'Andrew', 
+    last_name: 'Capp', gender: 'male', family: family)
 
-familymembers1 = [
-    {first_name: 'Andrew', last_name: 'Capp', gender: 'male'},
-    {first_name: 'Sharon', last_name: 'Li', gender: 'female'}
-]
+familymember1.relationships.build(relation_type: "husband")
+familymember1.save
+
+familymember2 = Familymember.create(first_name: 'Sharon', last_name: 'Li', gender: 'female', family: family)
+familymember2.relationships.build(relation_type: "wife")
+familymember2.save
+
+binding.pry
 #create family members that are spouses
-familymembers1.each do |member| 
-    a = Familymember.new(member)
-    a.family = family
-    a.save
-end
+#familymembers1.each do |member| 
+#    a = Familymember.new(member)
+#    a.family = family
+#    a.save
+#end
 
 #manually create and link relationships for family members that are spouses
 
