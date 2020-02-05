@@ -11,9 +11,44 @@
     width: 100%;
   }
 
+  /* --- Navigation Bar Styles --- */
+
+  #nav_bar {
+    width: 79.5%;
+    max-width: 1015px;
+    margin: 15px auto;
+    
+  }
+
+  #nav_list {
+    background-color: lightgrey;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  li.nav_link {
+    float: left;
+    border-right: 2px solid darkgray;
+   
+  }
+
+  li.nav_link a {
+    display: block;
+    color: grey;
+    text-align: center;
+    padding: .5em;
+    text-decoration: none;
+  }
+
+  .nav_link:hover {
+    background-color: darkgray;
+  }
+
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
+    background: lightblue;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
