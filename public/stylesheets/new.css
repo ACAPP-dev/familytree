@@ -1,5 +1,7 @@
 
 .parent_options {
+    text-align: center;
+    margin: 1px auto;
     
 }
 
@@ -33,11 +35,12 @@ h1, h3 {
 
 .col-2 {
     width: 20%;
+    text-align: center;
     
 }
 
 .col-3 {
-    width: 40%;
+    width: 38%;
     
 }
 

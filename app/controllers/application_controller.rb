@@ -28,14 +28,16 @@ class ApplicationController < Sinatra::Base
     family_object = Family.find_by(surname: "Capp")
     a = Familymember.new(params[:familymember])
     a.family = family_object
-   # binding.pry
+    #binding.pry
     params[:relationships].each do |relationship|
       #binding.pry
-      related_familymember_object = Familymember.find(relationship[:related_familymember])
-      rel = Relationship.new(relation_type: relationship[:relation_type])
-      rel.related_familymember = related_familymember_object
-      rel.save
-      a.relationships << rel
+      if relationship[:relation_type] != "none" && relationship.has_key?("related_familymember")
+        related_familymember_object = Familymember.find(relationship[:related_familymember])
+        rel = Relationship.new(relation_type: relationship[:relation_type])
+        rel.related_familymember = related_familymember_object
+        rel.save
+        a.relationships << rel
+      end
     end
     a.save
     redirect "/familymembers/#{a.id}"
