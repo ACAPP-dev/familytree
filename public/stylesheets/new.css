@@ -1,4 +1,20 @@
 
+.parent_options {
+    
+}
+
+#option_father {
+    height: 100%;
+    width: 50%;
+    float: left;
+}
+
+#option_mother {
+    height: 100%;
+    width: 50%;
+    float: left;
+}
+
 h1, h3 {
     text-align: center;
 }
@@ -11,17 +27,17 @@ h1, h3 {
 }
 
 .col-1 {
-    width: 45%;
+    width: 40%;
     
 }
 
 .col-2 {
-    width: 25%;
+    width: 20%;
     
 }
 
 .col-3 {
-    width: 25%;
+    width: 40%;
     
 }
 

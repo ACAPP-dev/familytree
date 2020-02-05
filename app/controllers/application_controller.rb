@@ -19,19 +19,17 @@ class ApplicationController < Sinatra::Base
   get "/familymembers" do
     @families = Family.all
     @familymembers = Familymember.all
-    @relations = Relationship.all
+    #@relations = Relationship.all
     #@relation_join = FamilymemberRelationship.all
     erb :index
   end
 
   post "/familymembers" do
     family_object = Family.find_by(surname: "Capp")
-    a = Familymember.new(first_name: params[:familymember][:first_name],
-      last_name: params[:familymember][:last_name],
-      gender: params[:familymember][:gender])
+    a = Familymember.new(params[:familymember])
     a.family = family_object
    # binding.pry
-    params[:familymember][:relationships].each do |relationship|
+    params[:relationships].each do |relationship|
       #binding.pry
       related_familymember_object = Familymember.find(relationship[:related_familymember])
       rel = Relationship.new(relation_type: relationship[:relation_type])

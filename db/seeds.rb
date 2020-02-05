@@ -11,57 +11,49 @@ user.save
 family.users << user
 family.save
 
-familymember1 = Familymember.create(first_name: 'Andrew', 
-    last_name: 'Capp', gender: 'male', family: family)
-
-familymember1.relationships.build(relation_type: "husband")
-familymember1.save
+familymember1 = Familymember.create(first_name: 'Andrew', last_name: 'Capp', gender: 'male', family: family)
 
 familymember2 = Familymember.create(first_name: 'Sharon', last_name: 'Li', gender: 'female', family: family)
-familymember2.relationships.build(relation_type: "wife")
+
+rel1 = familymember1.relationships.build(relation_type: "wife")
+rel1.related_familymember = familymember2
+rel1.save
+familymember1.save
+
+rel2 = familymember2.relationships.build(relation_type: "husband")
+rel2.related_familymember = familymember1
+rel2.save
 familymember2.save
 
-binding.pry
-#create family members that are spouses
-#familymembers1.each do |member| 
-#    a = Familymember.new(member)
-#    a.family = family
-#    a.save
-#end
+#familymember1.relationships.first.related_familymember = familymember2
+#familymember1.save
 
-#manually create and link relationships for family members that are spouses
+#familymember2.relationships.first.related_familymember = familymember1
+#familymember2.save
 
-    a = Familymember.find_by(first_name: "Andrew")
-    #binding.pry
-    rel = Relationship.create(relation_type: 'spouse', description: 'Sharon is my spouse')
-    rel.related_familymember = Familymember.find_by(first_name: "Sharon")
-    rel.save
-    a.relationships << rel
-    #a.relationships << rel3
-    a.save
+familymembers3 = [
+                    {first_name: 'Amber', last_name: 'Burns', gender: 'female'},
+                    {first_name: 'Ashleigh', last_name: 'Simon', gender: 'female'},
+                    {first_name: 'Jessica', last_name: 'Zhang', gender: 'female'},
+                    {first_name: 'Jolynn', last_name: 'Zhang', gender: 'female'}
+                ]
 
-    b = Familymember.find_by(first_name: "Sharon")
-    rel4 = Relationship.create(relation_type: 'spouse', description: 'Andrew is my spouse')
-    rel4.related_familymember = Familymember.find_by(first_name: "Andrew")
-    rel4.save
-    b.relationships << rel4
-    b.save
+#create family members that are daughters and save relationships
 
-familymembers2 = [
-    {first_name: 'Amber', last_name: 'Burns', gender: 'female'},
-    {first_name: 'Ashleigh', last_name: 'Simon', gender: 'female'},
-    {first_name: 'Jessica', last_name: 'Zhang', gender: 'female'},
-    {first_name: 'Jolynn', last_name: 'Zhang', gender: 'female'}
-]
-
-#create family members that are children and save relationships
-familymembers2.each do |member| 
+familymembers3.each do |member| 
     a = Familymember.new(member)
     a.family = family
-    rel2 = Relationship.create(relation_type: 'parent', description: 'Andrew and Sharon family')
-    rel2.related_familymember = Familymember.find_by(first_name: 'Andrew')
-    rel2.save
-    a.relationships << rel2
+
+    rel3 = Relationship.create(relation_type: 'father')
+    rel3.related_familymember = Familymember.find_by(first_name: 'Andrew')
+    rel3.save
+
+    rel4 = Relationship.create(relation_type: "mother")
+    rel4.related_familymember = Familymember.find_by(first_name: 'Sharon')
+    rel4.save
+
+    a.relationships << rel3
+    a.relationships << rel4
     a.save
 end
 

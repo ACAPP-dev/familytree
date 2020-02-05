@@ -20,23 +20,30 @@
     <form action="/familymembers" method="post">
         <div class="col col-1">
             <label for="[familymember]first_name">First Name</label>
-            <input type="text" name="[familymember]first_name"/>
+            <input type="text" name="[familymember]first_name" />
             <label for="[familymember]last_name">Last Name</label>
-            <input type="text" name="[familymember]last_name"/><br/><br/>
+            <input type="text" name="[familymember]last_name" /><br />
+            <label for="[familymember]married_last_name" />Married Last Name (if applicable)</label>
+            <input type="text" name="[familymember]married_last_name" />
+            <br /><br />
             <p><label for="[familymember]gender">Select Gender: </label>
             <input type="radio" name="[familymember]gender" value="male"> Male   <span>
             <input type="radio" name="[familymember]gender" value="female"> Female<br/></span></p>
-           
+            <br/>
+            <p>Birth Date: <input type="date" name="[familymember]birth_date" /></p>
+            <p>Death Date (if applicable): <input type="date" name="[familymember]death_date" /></p>
+            <p>Hometown: <input type="text" name="[familymember]home_town" /></p>
         </div>
         <div class="col col-2">
             <h3>Select Spouse</h3>
             <p>Choose "No Spouse" if none or if name does not appear in list</p>
-            <select name="[familymember][relationships][]relation_type" size="2">
-                <option value="spouse">Spouse</option>
+            <select name="[relationships][]relation_type" size="3">
+                <option value="wife">Wife</option>
+                <option value="husband">Husband</option>
                 <option value="none">No Spouse</option>
             </select><br/><br/>
             <p>Select Spouse from List Below</p>
-            <select name="[familymember][relationships][]related_familymember" size="10">
+            <select name="[relationships][]related_familymember" size="10">
                 <% @members.each do |member| %>
                     <%= "<option value=#{member.id}>" %>
                     <%= member.first_name %> <%= member.last_name %>
@@ -48,14 +55,15 @@
             <br/>
         </div>
         <div class="col col-3">
-        <h3>Select Parent</h3>
+        <h3>Select Parents</h3>
         <p>Choose "None" if name does not appear in list</p>
-        <select name="[familymember][relationships][]relation_type" size="2">
-            <option value="parent">Father</option>
+        <div class="parent_options" id="option_father">
+        <select name="[relationships][]relation_type" size="2">
+            <option value="father">Father</option>
             <option value="none">None</option>
         </select><br/><br/>
-        <p>Select FATHER from List Below</p>
-        <select name="[familymember][relationships][]related_familymember" size="10">
+        <p>Select Father from List Below</p>
+        <select name="[relationships][]related_familymember" size="10">
             <% @members.each do |member| %>
                 <% if member.gender == "male" %>
                     <%= "<option value=#{member.id}>" %>
@@ -63,7 +71,23 @@
                     </option>
                 <% end %>
             <% end %>
+        </select><br/><br/></div>
+
+        <div class="parent_options" id="option_mother">
+        <select name="[relationships][]relation_type" size="2">
+            <option value="mother">Mother</option>
+            <option value="none">None</option>
         </select><br/><br/>
+        <p>Select Mother from List Below</p>
+        <select name="[relationships][]related_familymember" size="10">
+            <% @members.each do |member| %>
+                <% if member.gender == "female" %>
+                    <%= "<option value=#{member.id}>" %>
+                    <%= member.first_name %> <%= member.last_name %>
+                    </option>
+                <% end %>
+            <% end %>
+        </select><br/><br/></div>
         <br/>
         <br/>
         <br/>

@@ -10,19 +10,19 @@
 
 <h2>Family Members</h2>
     <% @familymembers.each do |member| %>
-       <p> <h3>Member:</h3>
-        <%= member.id %>
-        <%= member.first_name %> 
-        <%= member.last_name %>
-        <%= member.gender %>
-        <h4>Relationships</h4>
-        <% member.relationships.each do |relationship| %>
-        <%= relationship.relation_type.capitalize %>:
-        <% #binding.pry %>
-        <%= relationship.related_familymember.first_name %>
-        
-        <% end %>
-       </p>
+      <% #binding.pry %>
+         <p> <h3>Member:</h3>
+            <%= member.id %>
+            <%= member.first_name %> 
+            <%= member.last_name %>
+            <%= member.gender %>
+            <h4>Relationships</h4>
+            <% member.relationships.each do |relationship| %>
+                  <%= relationship.relation_type.capitalize %>:
+                 
+                  <%= relationship.related_familymember.first_name %>
+            <% end %>
+         </p>
     <% end %>
        
     
