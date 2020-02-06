@@ -14,6 +14,11 @@ class FamiliesController < ApplicationController
         erb :'families/new'
     end
 
+    patch '/families/:id' do
+        @family = Family.find_by(id: params[:id])
+        binding.pry
+    end
+    
     post '/families' do
         #binding.pry
         user = User.find_by(id: session[:user_id])
@@ -44,10 +49,7 @@ class FamiliesController < ApplicationController
         erb :'families/edit'
     end
 
-    patch '/families/:id' do
-        @family = Family.find_by(id: params[:id])
-        binding.pry
-    end
+    
 
     delete '/families/:id' do
         
