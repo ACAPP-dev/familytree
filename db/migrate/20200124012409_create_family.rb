@@ -6,6 +6,8 @@ class CreateFamily < ActiveRecord::Migration[5.2]
       t.string :logo
       t.string :color
       t.string :photo
+      t.string :family_code
+      t.string :password_digest
     end
   end
 end

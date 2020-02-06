@@ -1,9 +1,21 @@
 <h1>Listing of Families</h1>
 
-<h2>Families</h2>
+<h2>My Families</h2>
+
+   <table>
+      <tr>
+         <th>Family Code</th>
+         <th>Family Name</th>
+         <th>Description</th>
+      </tr>
+
+
     <% @families.each do |family| %>
-       <p> 
-        <%= family.id %>
-        <%= family.surname %> 
-       </p>
+      <tr>
+         <td><a href="/family/<%= family.id %>"><%= family.family_code %></a></td>
+         <td><%= family.surname %></td>
+         <td><%= family.description %></td>
+      </tr> 
     <% end %>
+
+    </table>

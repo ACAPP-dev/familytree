@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_02_04_220908) do
     t.string "logo"
     t.string "color"
     t.string "photo"
+    t.string "family_code"
+    t.string "password_digest"
   end
 
   create_table "familymembers", force: :cascade do |t|

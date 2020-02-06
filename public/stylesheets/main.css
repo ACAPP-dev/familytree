@@ -24,11 +24,22 @@
     font-size: 20px;
     background-color: #008CBA;
     border-radius: 12px;
-
-
   }
 
+  /* --- General Table Styles (Family Listing) --- */
 
+  table {
+    width: 50%;
+    margin: 10px auto;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid darkgray;
+    text-align: left;
+    padding: 5px;
+
+  }
 
   /* --- Navigation Bar Styles --- */
 
@@ -63,6 +74,14 @@
 
   .nav_link:hover {
     background-color: darkgray;
+  }
+
+  #nav_user {
+    display: block;
+    color: grey;
+    text-align: center;
+    padding: .5em;
+
   }
 
   /* --- Welcome Page Styles --- */
