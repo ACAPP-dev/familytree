@@ -1,1 +1,15 @@
-Edit Family Details
+<h1>Edit Family Detail</h1>
+
+<form action="/families/<%= @family.id %>" method="post">
+    <input type="hidden" name="_method" value="PATCH" />
+
+    <h2>Family Name: <input type="text" name="family[surname]" value="<%= @family.surname %>" /></h2>
+
+    <p>Family Code: <input type="text" name="family[family_code]" value="<%= @family.family_code %>" /></p>
+    <p>Description: <input type="text" name="family[description]" value="<%= @family.description %>" /></p>
+    <p>Family Logo (Future Enhancement): <%= @family.logo %></p>
+    <p>Family Color (Future Enhancement): <%= @family.color %></p>
+    <p>Family Photo (Future Enhancement): <%= @family.photo %></p>
+
+    <input type="submit" value="Update Family" />
+</form>

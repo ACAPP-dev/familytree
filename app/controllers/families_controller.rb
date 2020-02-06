@@ -33,17 +33,20 @@ class FamiliesController < ApplicationController
     end
 
     get '/families/:id' do
+        @user = User.find_by(id: session[:user_id])
         @family = Family.find(params[:id])
         erb :'families/show'
     end
 
     get '/families/:id/edit' do
+        @user = User.find_by(id: session[:user_id])
         @family = Family.find(params[:id])
         erb :'families/edit'
     end
 
     patch '/families/:id' do
-
+        @family = Family.find_by(id: params[:id])
+        binding.pry
     end
 
     delete '/families/:id' do

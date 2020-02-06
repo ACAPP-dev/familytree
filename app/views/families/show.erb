@@ -1,1 +1,12 @@
-Show Family Detail
+<h1>Family Detail</h1>
+
+<h2>Family Name: <%= @family.surname %></h2>
+
+<p>Family Code: <%= @family.family_code %></p>
+<p>Description: <%= @family.description %></p>
+<p>Family Logo (Future Enhancement): <%= @family.logo %></p>
+<p>Family Color (Future Enhancement): <%= @family.color %></p>
+<p>Family Photo (Future Enhancement): <%= @family.photo %></p>
+
+<a href="/families/<%= @family.id %>/edit">Edit Family</a>
+<% # Future addition? : Ability to delete family (if no familymembers in family) %>
