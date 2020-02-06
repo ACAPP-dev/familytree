@@ -7,6 +7,13 @@
 <p>Family Logo (Future Enhancement): <%= @family.logo %></p>
 <p>Family Color (Future Enhancement): <%= @family.color %></p>
 <p>Family Photo (Future Enhancement): <%= @family.photo %></p>
-
+<p>Users Authorized to Make Changes to Family:</p>
+    <ol>
+        <% @family_users.each do |user| %>
+            <li>User Name: <%= user[0] %> Name: <%= user[1] %></li>
+        <% end %>
+    </ol>
+<br>
+<br>
 <a href="/families/<%= @family.id %>/edit">Edit Family</a>
 <% # Future addition? : Ability to delete family (if no familymembers in family) %>

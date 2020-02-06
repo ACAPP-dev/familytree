@@ -14,11 +14,6 @@ class FamiliesController < ApplicationController
         erb :'families/new'
     end
 
-    patch '/families/:id' do
-        @family = Family.find_by(id: params[:id])
-        binding.pry
-    end
-    
     post '/families' do
         #binding.pry
         user = User.find_by(id: session[:user_id])
@@ -40,6 +35,11 @@ class FamiliesController < ApplicationController
     get '/families/:id' do
         @user = User.find_by(id: session[:user_id])
         @family = Family.find(params[:id])
+        @family_users = []
+        @family.users.each do |user|
+            @family_users << [user.username, user.first_name, user.last_name]
+        end
+        #binding.pry
         erb :'families/show'
     end
 
@@ -49,8 +49,17 @@ class FamiliesController < ApplicationController
         erb :'families/edit'
     end
 
+    patch '/families/:id' do
+        @family = Family.find_by(id: params[:id])
+        @family.update(params[:family])
+        if @family.valid?
+            redirect '/families'
+        else
+            #message that update failed?
+            redirect "/families/#{@family.id}"
+        end
+    end
     
-
     delete '/families/:id' do
         
     end

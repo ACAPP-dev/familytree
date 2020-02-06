@@ -6,7 +6,8 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 use Rack::MethodOverride
-run ApplicationController
+
 use FamiliesController
 use FamilymembersController
 use UsersController
+run ApplicationController
