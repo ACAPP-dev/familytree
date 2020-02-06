@@ -6,3 +6,6 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 run ApplicationController
+use FamiliesController
+use FamilymembersController
+use UsersController

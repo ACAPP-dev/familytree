@@ -5,46 +5,20 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, "secret"
   end
 
-  get "/" do
-    erb :welcome
-  end
-
-  get "/familymembers/new" do
-    @members = Familymember.all
-    erb :new
-  end
-
-  get "/familymembers" do
-    @families = Family.all
-    @familymembers = Familymember.all
-    #@relations = Relationship.all
-    #@relation_join = FamilymemberRelationship.all
+  get '/' do
     erb :index
   end
 
-  post "/familymembers" do
-    family_object = Family.find_by(surname: "Capp")
-    a = Familymember.new(params[:familymember])
-    a.family = family_object
-    #binding.pry
-    params[:relationships].each do |relationship|
-      #binding.pry
-      if relationship[:relation_type] != "none" && relationship.has_key?("related_familymember")
-        related_familymember_object = Familymember.find(relationship[:related_familymember])
-        rel = Relationship.new(relation_type: relationship[:relation_type])
-        rel.related_familymember = related_familymember_object
-        rel.save
-        a.relationships << rel
-      end
-    end
-    a.save
-    redirect "/familymembers/#{a.id}"
+  get '/login' do
+    erb :login
   end
 
-  get "/familymembers/:id" do
-    "Show individual family member"
+  get '/logout' do
+    session.clear
+    redirect '/login'
   end
-
 end
