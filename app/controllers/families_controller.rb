@@ -46,6 +46,10 @@ class FamiliesController < ApplicationController
     get '/families/:id/edit' do
         @user = User.find_by(id: session[:user_id])
         @family = Family.find(params[:id])
+        #@family_users = []
+        #@family.users.each do |user|
+        #    @family_users << [user.username, user.first_name, user.last_name]
+        #end
         erb :'families/edit'
     end
 

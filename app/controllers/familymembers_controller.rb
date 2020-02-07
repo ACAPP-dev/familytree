@@ -3,10 +3,8 @@ require './config/environment'
 class FamilymembersController < ApplicationController
     
     get '/familymembers' do
-        @families = Family.all
+        @user = User.find_by(id: session[:user_id])
         @familymembers = Familymember.all
-        #@relations = Relationship.all
-        #@relation_join = FamilymemberRelationship.all
         erb :'familymembers/index'
     end
 

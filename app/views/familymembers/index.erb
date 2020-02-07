@@ -1,26 +1,17 @@
 <h1>Listing of Family Members</h1>
 
-<h2>Families</h2>
-    <% @families.each do |family| %>
-       <p> 
-        <%= family.id %>
-        <%= family.surname %> 
-       </p>
-    <% end %>
-
-<h2>Family Members</h2>
-    <% @familymembers.each do |member| %>
-      <% #binding.pry %>
-         <p> <h3>Member:</h3>
-            <%= member.id %>
-            <%= member.first_name %> 
-            <%= member.last_name %>
-            <%= member.gender %>
-            <h4>Relationships</h4>
-            <% member.relationships.each do |relationship| %>
-                  <%= relationship.relation_type.capitalize %>:
-                 
-                  <%= relationship.related_familymember.first_name %>
-            <% end %>
-         </p>
+<% @familymembers.each do |member| %>
+   <% #binding.pry %>
+   <h2>Member: <%= member.first_name %> <%= member.last_name %></h2>
+      <h4>Family: <%= member.family.surname %></h4>
+      Married Name: <%= member.married_last_name %> <span> 
+      Gender: <%= member.gender %> <span> 
+      Birthdate: <%= member.birth_date %> to: <%= member.death_date if member.death_date %><br>
+      <h4>Relationships</h4>
+         <% member.relationships.each do |relationship| %>
+            <%= relationship.relation_type.capitalize %>:
+            <%= relationship.related_familymember.first_name %>
+         <% end %>
+         <br>
+         <h2></h2>
     <% end %>

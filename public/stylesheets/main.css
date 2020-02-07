@@ -1,7 +1,7 @@
 @media screen {
   /* --- Reset Styles --- */
   * {
-    list-style: none;
+    /* list-style: none; */
     margin: 0;
     padding: 0;
   }
@@ -16,7 +16,7 @@
   a.button {
     display: block;
     margin: 10px auto;
-    width: 50%;
+    width: 100px;
     color: white;
     padding: 15px;
     text-align: center;
@@ -84,7 +84,12 @@
 
   }
 
-  /* --- Welcome Page Styles --- */
+  /* --- General Page Styles --- */
+
+  select {
+    font-size: 15px;
+  }
+
   body {
     background: lightblue;
     color: #333;
