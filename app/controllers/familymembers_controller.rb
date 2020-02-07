@@ -37,6 +37,11 @@ class FamilymembersController < ApplicationController
         erb :'familymembers/show'
     end
 
+    get '/familymembers/family/:id' do
+        "Set up view showing family members from specific family"
+
+    end
+
     get '/familymembers/:id/edit' do
         @familymember = Familymember.find(params[:id])
         erb :'familymembers/edit'

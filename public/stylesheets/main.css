@@ -13,10 +13,20 @@
 
   /* --- Main Index Page Styles --- */
 
+  div.container {
+    display: block;
+    width: 75%;
+    border: solid 2px black;
+    border-radius: 12px;
+    text-align: center;
+    margin: 5px auto;
+
+  }
+
   a.button {
     display: block;
     margin: 10px auto;
-    width: 100px;
+    width: 200px;
     color: white;
     padding: 15px;
     text-align: center;
@@ -24,6 +34,10 @@
     font-size: 20px;
     background-color: #008CBA;
     border-radius: 12px;
+  }
+
+  a.button:hover{
+    background-color: darkgray;
   }
 
   /* --- General Table Styles (Family Listing) --- */
@@ -34,9 +48,16 @@
     border-collapse: collapse;
   }
 
+  th {
+    text-align: center;
+  }
+
+  td {
+    text-align: left;
+  }
+
   th, td {
     border: 1px solid darkgray;
-    text-align: left;
     padding: 5px;
 
   }
@@ -66,7 +87,7 @@
 
   li.nav_link a {
     display: block;
-    color: grey;
+    color: white;
     text-align: center;
     padding: .5em;
     text-decoration: none;
@@ -78,7 +99,7 @@
 
   #nav_user {
     display: block;
-    color: grey;
+    color: white;
     text-align: center;
     padding: .5em;
 
