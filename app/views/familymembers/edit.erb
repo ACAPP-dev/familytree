@@ -1,1 +1,56 @@
-Edit Family Member Details & Relationships
+<h2>Edit Family Member</h2>
+
+<form action="/familymembers" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <h4>First Name: <input type="text" name="familymember[first_name]"
+        value="<%= @familymember.first_name %>" /></h4>
+    <h4>Last Name: <input type="text" name="familymember[last_name]"
+        value="<%= @familymember.last_name %>" /></h4>
+
+<div class="container">
+    <table>
+        <tr>
+            <td>Gender</td>
+            <td><%= @familymember.gender %></td>
+        </tr>
+        <tr>
+            <td>Birthdate</td>
+            <td><%= @familymember.birth_date %></td>
+        </tr>
+        <tr>
+            <td>Death (if applicable)</td>
+            <td><%= @familymember.death_date %></td>
+        </tr>
+        <tr>
+            <td>Hometown</td>
+            <td><%= @familymember.home_town %></td>
+        </tr>
+        <tr>
+            <td>Photo1 (Future Enhancemnt)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Photo2 (Future Enhancemnt)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Story (Future Enhancemnt)</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h4>Relationships</h4>
+
+    <table>
+        <% @familymember.relationships.each do |relationship| %>
+            <tr>
+                <td><%= relationship.relation_type.capitalize %></td>
+                <td><%= relationship.related_familymember.first_name %>
+                    <%= relationship.related_familymember.last_name %></td>
+            </tr>
+        <% end %>
+    </table>
+</div>
+
+    <input type="submit" value="Submit Changes">
+</form>

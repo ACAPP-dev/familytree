@@ -33,6 +33,17 @@
         </tr>
     </table>
 
-    
+    <h4>Relationships</h4>
 
+    <table>
+        <% @familymember.relationships.each do |relationship| %>
+            <tr>
+                <td><%= relationship.relation_type.capitalize %></td>
+                <td><%= relationship.related_familymember.first_name %>
+                    <%= relationship.related_familymember.last_name %></td>
+            </tr>
+        <% end %>
+    </table>
 </div>
+
+<a class="button" href="/familymembers/<%= @familymember.id %>/edit">Edit Member</a>

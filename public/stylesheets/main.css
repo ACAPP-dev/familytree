@@ -107,6 +107,16 @@
 
   /* --- General Page Styles --- */
 
+  input[type="submit"] {
+    display: block;
+    font-size: 30px;
+    margin: 5px auto;
+  }
+
+  input[value] {
+    font-size: 15px;
+  }
+
   select {
     font-size: 15px;
   }
