@@ -17,19 +17,20 @@
     float: left;
 }
 
-h1, h3 {
+h1, h2, h3, h4 {
     text-align: center;
 }
 
 
 .col {
+    margin: 2px;
     height: 500px;
     float: left;
     border: 1px solid black;
 }
 
 .col-1 {
-    width: 40%;
+    width: 38%;
     
 }
 

@@ -9,6 +9,7 @@ class FamilymembersController < ApplicationController
     end
 
     get '/familymembers/new' do
+        @user = User.find_by(id: session[:user_id])
         @members = Familymember.all
         erb :'familymembers/new'
     end
@@ -33,16 +34,23 @@ class FamilymembersController < ApplicationController
     end
     
     get '/familymembers/:id' do
+        @user = User.find_by(id: session[:user_id])
         @familymember = Familymember.find(params[:id])
         erb :'familymembers/show'
     end
 
     get '/familymembers/family/:id' do
-        "Set up view showing family members from specific family"
+        #Show family members from selected family
+        @user = User.find_by(id: session[:user_id])
+        @family = Family.find_by(id: params[:id])
+        @familymembers = @family.familymembers
+        erb :'familymembers/index_by_family'
+        #binding.pry
 
     end
 
     get '/familymembers/:id/edit' do
+        @user = User.find_by(id: session[:user_id])
         @familymember = Familymember.find(params[:id])
         erb :'familymembers/edit'
     end

@@ -1,5 +1,5 @@
 <h1>Listing of Family Members</h1>
-
+<h4>Family Name: <%= @family.surname %></h4>
 
 <table>
    <tr>
@@ -8,7 +8,7 @@
       <th>Gender</th>
       <th>Birthdate</th>
       <th>Hometown</th>
-      <th>Family Name</th>
+      <th>View Details</th>
    </tr>
 
    <% @familymembers.each do |member| %>
@@ -18,7 +18,7 @@
          <td><%= member.gender %></td>
          <td><%= member.birth_date %></td>
          <td><%= member.home_town %></td>
-         <td><%= member.family.surname %></td>
+         <td><a class="button" href="/familymembers/<%= member.id %>">View Details</a>
       </tr>         
    <% end %>
 
