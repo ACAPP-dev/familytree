@@ -74,6 +74,12 @@ class FamilymembersController < ApplicationController
             #update relationships
             if params[:relationships][0][:relation_type] == "husband" && params[:relationships][0].has_key?("related_familymember")
                 #binding.pry
+                if wife_object
+                    index = familymember.relationships.find_index{|element| element[:relation_type] == "wife"}
+                    familymember.relationships[index].delete
+                    familymember.save
+                end
+
                 if !husband_object
                     rel = Relationship.new(relation_type: "husband")
                     rel.related_familymember = Familymember.find_by(id: params[:relationships][0][:related_familymember].to_i)
@@ -82,12 +88,49 @@ class FamilymembersController < ApplicationController
                     familymember.save
                 elsif husband_object && husband_object.related_familymember.id != params[:relationships][0][:related_familymember].to_i
                     husband_object.related_familymember = Familymember.find_by(id: params[:relationships][0][:related_familymember].to_i)
+                    husband_object.save
+                    index = familymember.relationships.find_index{|element| element[:relation_type] == "husband"}
+                    familymember.relationships[index].related_familymember = husband_object.related_familymember
+                    familymember.save
+                    #binding.pry
+                end
+            elsif 
+                params[:relationships][0][:relation_type] == "wife" && params[:relationships][0].has_key?("related_familymember")
+                #binding.pry
+                if husband_object
                     #binding.pry
                     index = familymember.relationships.find_index{|element| element[:relation_type] == "husband"}
                     familymember.relationships[index].delete
-                    familymember.relationships << husband_object
                     familymember.save
                 end
+
+                if !wife_object
+                    rel = Relationship.new(relation_type: "wife")
+                    rel.related_familymember = Familymember.find_by(id: params[:relationships][0][:related_familymember].to_i)
+                    rel.save
+                    familymember.relationships << rel
+                    familymember.save
+                elsif wife_object && wife_object.related_familymember.id != params[:relationships][0][:related_familymember].to_i
+                    wife_object.related_familymember = Familymember.find_by(id: params[:relationships][0][:related_familymember].to_i)
+                    wife_object.save
+                    index = familymember.relationships.find_index{|element| element[:relation_type] == "wife"}
+                    familymember.relationships[index].related_familymember = wife_object.related_familymember
+                    familymember.save
+                    #binding.pry
+                end
+            else
+                if husband_object
+                    #binding.pry
+                    index = familymember.relationships.find_index{|element| element[:relation_type] == "husband"}
+                    familymember.relationships[index].delete
+                    familymember.save
+                    #husband_object.delete
+                elsif wife_object
+                    index = familymember.relationships.find_index{|element| element[:relation_type] == "wife"}
+                    familymember.relationships[index].delete
+                    familymember.save
+                end
+            
             end
             #binding.pry
             redirect "/familymembers/#{familymember.id}"
