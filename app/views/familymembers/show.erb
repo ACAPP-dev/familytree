@@ -47,3 +47,9 @@
 </div>
 
 <a class="button" href="/familymembers/<%= @familymember.id %>/edit">Edit Member</a>
+<a class="button" href="DELETE/familymembers/<%= @familymember.id %>">DELETE Member</a>
+<form action="/familymembers/<%= @familymember.id %>" method="POST">
+<input type="hidden" name="_method" value="DELETE" />
+<input type="submit" value="DELETE Member">
+
+</form>

@@ -54,7 +54,8 @@
             <select name="[relationships][]related_familymember" size="10">
                 <% @members.each do |member| %>
                     <% #binding.pry %>
-                    <option value="<%= member.id %>" <%= 'selected' if @wife && @wife.related_familymember.id == member.id %> />
+                    <option value="<%= member.id %>" <%= 'selected' if (@wife && @wife.related_familymember.id == member.id) ||
+                        (@husband && @husband.related_familymember.id == member.id) %> />
                     <%= member.first_name %> <%= member.last_name %>
                     </option>
                 <% end %>
@@ -72,10 +73,11 @@
                 <p>Select Father from List Below</p>
                 <select name="[relationships][]related_familymember" size="10">
                     <% @members.each do |member| %>
-                        <% #binding.pry %>
-                        <option value="<%= member.id %>" <%= 'selected' if @father && @father.related_familymember.id == member.id %> />
-                        <%= member.first_name %> <%= member.last_name %>
-                        </option>
+                        <% if member.gender == "male" %>
+                            <option value="<%= member.id %>" <%= 'selected' if @father && @father.related_familymember.id == member.id %> />
+                            <%= member.first_name %> <%= member.last_name %>
+                            </option>
+                        <% end %>
                     <% end %>
                 </select>
             </div>
@@ -87,10 +89,11 @@
                 <p>Select Mother from List Below</p>
                 <select name="[relationships][]related_familymember" size="10">
                     <% @members.each do |member| %>
-                        <% #binding.pry %>
-                        <option value="<%= member.id %>" <%= 'selected' if @mother && @mother.related_familymember.id == member.id %> />
-                        <%= member.first_name %> <%= member.last_name %>
-                        </option>
+                        <% if member.gender == "female" %>
+                            <option value="<%= member.id %>" <%= 'selected' if @mother && @mother.related_familymember.id == member.id %> />
+                            <%= member.first_name %> <%= member.last_name %>
+                            </option>
+                        <% end %>
                     <% end %>
                 </select>
             </div>
