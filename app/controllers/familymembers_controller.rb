@@ -174,7 +174,17 @@ class FamilymembersController < ApplicationController
     end
 
     delete '/familymembers/:id' do
-        "Delete Familymember"
+        familymember = Familymember.find_by(id: params[:id])
+        relationships_with_member = Relationship.where(related_familymember_id: params[:id])
+        if relationships_with_member
+            relationships_with_member.each do |relationship|
+            related_member = relationship.familymember
+            index = related_member.relationships.find_index{|element| element[:id] == relationship.id}
+            related_member.relationships[index].delete
+            end
+        end
+        familymember.delete
+        redirect "/familymembers"
     end
 
 end
