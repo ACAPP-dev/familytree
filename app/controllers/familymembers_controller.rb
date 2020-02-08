@@ -52,14 +52,39 @@ class FamilymembersController < ApplicationController
     get '/familymembers/:id/edit' do
         @user = User.find_by(id: session[:user_id])
         @familymember = Familymember.find(params[:id])
+        @family = Family.find_by(id: @familymember.family.id)
+        @members = @family.familymembers
+        @husband = @familymember.relationships.find{|relation| relation.relation_type == "husband"}
+        @wife = @familymember.relationships.find{|relation| relation.relation_type == "wife"}
+        @mother = @familymember.relationships.find{|relation| relation.relation_type == "mother"}
+        @father = @familymember.relationships.find{|relation| relation.relation_type == "father"}
+        #binding.pry
         erb :'familymembers/edit'
     end
 
-    patch '/familymember/:id' do
-        "Update Familymember"
+    patch '/familymembers/:id' do
+        familymember = Familymember.find_by(id: params[:id])
+        husband = familymember.relationships.find{|relation| relation.relation_type == "husband"}
+        wife = familymember.relationships.find{|relation| relation.relation_type == "wife"}
+        mother = familymember.relationships.find{|relation| relation.relation_type == "mother"}
+        father = familymember.relationships.find{|relation| relation.relation_type == "father"}
+
+        if familymember.update(params[:familymember])
+            binding.pry
+            if params[:relationships][0]["relation_type"] == "husband"
+                if husband && husband.related_familymember.id != params[:relationships][0]["related_familymember"].to_i
+                    new_related_familymember = Familymember.find_by(id: params[:relationships][0]["related_familymember"].to_i)
+                    husband.related_familymember = new_related_familymember
+                end
+            end
+            redirect "/familymembers/#{familymember.id}"
+        else
+            #future message that update failed
+            redirect "/familymembers/#{familymember.id}/edit"
+        end       
     end
 
-    delete '/familymember/:id' do
+    delete '/familymembers/:id' do
         "Delete Familymember"
     end
 
