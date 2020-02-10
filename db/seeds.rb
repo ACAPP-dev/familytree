@@ -42,12 +42,10 @@ cappfamilymembers.each do |member|
     a.save
 end
 
-
-
 cappfamilyrelationships =   [
                                 {first_name: 'Andrew', relation_type: 'wife', related_familymember_first_name: 'Sharon'},
-                                {first_name: 'Andrew', relation_type: 'father', related_familymember_first_name: 'Joyce'},
-                                {first_name: 'Andrew', relation_type: 'mother', related_familymember_first_name: 'Cliff'},
+                                {first_name: 'Andrew', relation_type: 'father', related_familymember_first_name: 'Cliff'},
+                                {first_name: 'Andrew', relation_type: 'mother', related_familymember_first_name: 'Joyce'},
                                 {first_name: 'Sharon', relation_type: 'husband', related_familymember_first_name: 'Andrew'},
                                 {first_name: 'Amber', relation_type: 'father', related_familymember_first_name: 'Andrew'},
                                 {first_name: 'Amber', relation_type: 'mother', related_familymember_first_name: 'Sharon'},
@@ -67,23 +65,6 @@ cappfamilyrelationships =   [
                                 {first_name: 'Aaron', relation_type: 'wife', related_familymember_first_name: 'Gladys'},
                                 {first_name: 'Velma', relation_type: 'husband', related_familymember_first_name: 'Jim'},
                                 {first_name: 'Jim', relation_type: 'wife', related_familymember_first_name: 'Velma'},
-
-                                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             ]
 
 Familymember.all.where(family: family1).each do |each_member|
@@ -93,38 +74,122 @@ Familymember.all.where(family: family1).each do |each_member|
             each_member.relationships.build(relation_type: relationship[:relation_type], related_familymember: related_familymember_instance)
             each_member.save
         end
-
-
     end
-
 end
 
-#binding.pry
+#Sharon Family data
+
+lifamilymembers = [
+                        {first_name: 'Andrew', last_name: 'Capp', gender: 'male'},
+                        {first_name: 'Sharon', last_name: 'Li', gender: 'female'},
+                        {first_name: 'Amber', last_name: 'Burns', gender: 'female'},
+                        {first_name: 'Ashleigh', last_name: 'Simon', gender: 'female'},
+                        {first_name: 'Jessica', last_name: 'Zhang', gender: 'female'},
+                        {first_name: 'Jolynn', last_name: 'Zhang', gender: 'female'},
+                        {first_name: 'Bi', last_name: 'Hua', gender: 'female'},
+                        {first_name: 'Dad', last_name: 'of Sharon', gender: 'male'},
+                        {first_name: 'Paternal GMA', last_name: 'of Sharon', gender: 'female'},
+                        {first_name: 'Paternal GPA', last_name: 'of Sharon', gender: 'male'},
+                        {first_name: 'Maternal GMA', last_name: 'of Sharon', gender: 'female'},
+                        {first_name: 'Maternal GPA', last_name: 'of Sharon', gender: 'male'}
+                    ]
+
+lifamilymembers.each do |member| 
+    a = Familymember.new(member)
+    a.family = family2
+    a.save
+end
 
 
 
-# new section
+lifamilyrelationships =   [
+                                {first_name: 'Andrew', relation_type: 'wife', related_familymember_first_name: 'Sharon'},
+                                {first_name: 'Sharon', relation_type: 'father', related_familymember_first_name: 'Dad'},
+                                {first_name: 'Sharon', relation_type: 'mother', related_familymember_first_name: 'Bi'},
+                                {first_name: 'Sharon', relation_type: 'husband', related_familymember_first_name: 'Andrew'},
+                                {first_name: 'Amber', relation_type: 'father', related_familymember_first_name: 'Andrew'},
+                                {first_name: 'Amber', relation_type: 'mother', related_familymember_first_name: 'Sharon'},
+                                {first_name: 'Ashleigh', relation_type: 'father', related_familymember_first_name: 'Andrew'},
+                                {first_name: 'Ashleigh', relation_type: 'mother', related_familymember_first_name: 'Sharon'},
+                                {first_name: 'Jessica', relation_type: 'father', related_familymember_first_name: 'Andrew'},
+                                {first_name: 'Jessica', relation_type: 'mother', related_familymember_first_name: 'Sharon'},
+                                {first_name: 'Jolynn', relation_type: 'father', related_familymember_first_name: 'Andrew'},
+                                {first_name: 'Jolynn', relation_type: 'mother', related_familymember_first_name: 'Sharon'},
+                                {first_name: 'Bi', relation_type: 'husband', related_familymember_first_name: 'Dad'},
+                                {first_name: 'Bi', relation_type: 'father', related_familymember_first_name: 'Maternal GPA'},
+                                {first_name: 'Bi', relation_type: 'mother', related_familymember_first_name: 'Maternal GMA'},
+                                {first_name: 'Dad', relation_type: 'wife', related_familymember_first_name: 'Bi'},
+                                {first_name: 'Dad', relation_type: 'father', related_familymember_first_name: 'Paternal GPA'},
+                                {first_name: 'Dad', relation_type: 'mother', related_familymember_first_name: 'Paternal GMA'},
+                                {first_name: 'Paternal GMA', relation_type: 'husband', related_familymember_first_name: 'Paternal GPA'},
+                                {first_name: 'Paternal GPA', relation_type: 'wife', related_familymember_first_name: 'Paternal GMA'},
+                                {first_name: 'Maternal GMA', relation_type: 'husband', related_familymember_first_name: 'Maternal GPA'},
+                                {first_name: 'Maternal GPA', relation_type: 'wife', related_familymember_first_name: 'Maternal GMA'},
+                            ]
 
-#familymember1.relationships.build(relation_type: "wife", related_familymember: familymember2)
-#familymember1.save
+Familymember.all.where(family: family2).each do |each_member|
+    lifamilyrelationships.each do |relationship|
+        if relationship[:first_name] == each_member.first_name
+            related_familymember_instance = Familymember.find_by(first_name: relationship[:related_familymember_first_name], family: family2)
+            each_member.relationships.build(relation_type: relationship[:relation_type], related_familymember: related_familymember_instance)
+            #binding.pry
+            each_member.save
+        end
+    end
+end
 
-#familymember2.relationships.build(relation_type: "husband", related_familymember: familymember1)
-#familymember2.save
 
-#familymembers3 = [
- #                   {first_name: 'Amber', last_name: 'Burns', gender: 'female'},
-  #                  {first_name: 'Ashleigh', last_name: 'Simon', gender: 'female'},
-   #                 {first_name: 'Jessica', last_name: 'Zhang', gender: 'female'},
-    #                {first_name: 'Jolynn', last_name: 'Zhang', gender: 'female'}
-     #           ]
+#Burns Family data
 
-#create family members that are daughters and save relationships
+burnsfamilymembers = [
+                        {first_name: 'Brandon', last_name: 'Burns', gender: 'male'},
+                        {first_name: 'Amber', last_name: 'Capp', gender: 'female'},
+                        {first_name: 'Charleigh', last_name: 'Burns', gender: 'female'},
+                        {first_name: 'Ryan', last_name: 'Burns', gender: 'male'},
+                        {first_name: 'Desiree', last_name: 'Burns', gender: 'female'},
+                        {first_name: 'Tom', last_name: 'Burns', gender: 'male'},
+                        {first_name: 'Paternal GMA', last_name: 'of Brandon', gender: 'female'},
+                        {first_name: 'Paternal GPA', last_name: 'of Brandon', gender: 'male'},
+                        {first_name: 'Maternal GMA', last_name: 'of Brandon', gender: 'female'},
+                        {first_name: 'Maternal GPA', last_name: 'of Brandon', gender: 'male'},
+                    ]
 
-#familymembers3.each do |member| 
- #   a = Familymember.new(member)
-  #  a.family = family
-   # a.relationships.build(relation_type: 'father', related_familymember: familymember1)
-    #a.save
-    #a.relationships.build(relation_type: "mother", related_familymember: familymember2)
-    #a.save
-#end
+burnsfamilymembers.each do |member| 
+    a = Familymember.new(member)
+    a.family = family3
+    a.save
+end
+
+
+
+burnsfamilyrelationships =   [
+                                {first_name: 'Brandon', relation_type: 'wife', related_familymember_first_name: 'Amber'},
+                                {first_name: 'Brandon', relation_type: 'father', related_familymember_first_name: 'Tom'},
+                                {first_name: 'Brandon', relation_type: 'mother', related_familymember_first_name: 'Desiree'},
+                                {first_name: 'Amber', relation_type: 'husband', related_familymember_first_name: 'Brandon'},
+                                {first_name: 'Charleigh', relation_type: 'father', related_familymember_first_name: 'Brandon'},
+                                {first_name: 'Charleigh', relation_type: 'mother', related_familymember_first_name: 'Amber'},
+                                {first_name: 'Ryan', relation_type: 'father', related_familymember_first_name: 'Tom'},
+                                {first_name: 'Ryan', relation_type: 'mother', related_familymember_first_name: 'Desiree'},
+                                {first_name: 'Desiree', relation_type: 'husband', related_familymember_first_name: 'Tom'},
+                                {first_name: 'Desiree', relation_type: 'father', related_familymember_first_name: 'Maternal GPA'},
+                                {first_name: 'Desiree', relation_type: 'mother', related_familymember_first_name: 'Maternal GMA'},
+                                {first_name: 'Tom', relation_type: 'wife', related_familymember_first_name: 'Desiree'},
+                                {first_name: 'Tom', relation_type: 'father', related_familymember_first_name: 'Paternal GPA'},
+                                {first_name: 'Tom', relation_type: 'mother', related_familymember_first_name: 'Paternal GMA'},
+                                {first_name: 'Paternal GMA', relation_type: 'husband', related_familymember_first_name: 'Paternal GPA'},
+                                {first_name: 'Paternal GPA', relation_type: 'wife', related_familymember_first_name: 'Paternal GMA'},
+                                {first_name: 'Maternal GMA', relation_type: 'husband', related_familymember_first_name: 'Maternal GPA'},
+                                {first_name: 'Maternal GPA', relation_type: 'wife', related_familymember_first_name: 'Maternal GMA'},
+                            ]
+
+Familymember.all.where(family: family3).each do |each_member|
+    burnsfamilyrelationships.each do |relationship|
+        if relationship[:first_name] == each_member.first_name
+            related_familymember_instance = Familymember.find_by(first_name: relationship[:related_familymember_first_name], family: family3)
+            each_member.relationships.build(relation_type: relationship[:relation_type], related_familymember: related_familymember_instance)
+            #binding.pry
+            each_member.save
+        end
+    end
+end
