@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/bmabey/database_cleaner.git
-  revision: f2c613d7e44949f3ba2fe4e95a2ecf28ff7a2a8d
+  revision: 0f4e29d0adf207e961e1ea18562a828a8c1017fd
   specs:
-    database_cleaner (1.8.0.beta)
+    database_cleaner (1.8.2)
 
 GEM
   remote: http://rubygems.org/
@@ -23,7 +23,7 @@ GEM
     arel (9.0.0)
     bcrypt (3.1.13)
     bond (0.5.1)
-    capybara (3.30.0)
+    capybara (3.31.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -32,7 +32,7 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     coderay (1.1.2)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     daemons (1.3.1)
     diff-lcs (1.3)
     eventmachine (1.2.7)
@@ -44,13 +44,13 @@ GEM
     minitest (5.14.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (4.0.3)
-    rack (2.1.1)
+    rack (2.2.2)
     rack-protection (2.0.8.1)
       rack
     rack-test (1.1.0)

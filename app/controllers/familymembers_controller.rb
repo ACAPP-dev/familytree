@@ -3,15 +3,34 @@ require './config/environment'
 class FamilymembersController < ApplicationController
     
     get '/familymembers' do
-        @user = Helpers.current_user(session)
-        @familymembers = Familymember.all
-        erb :'familymembers/index'
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            families = []
+            @familymembers = []
+            Family.all.each do |family|
+                families << family if family.users.any?{|user| user.id==@user.id}
+            end
+            families.each do |family|
+                @familymembers << family.familymembers if family.users.any? {|user| user.id==@user.id}
+            end
+            @familymembers.flatten!
+            erb :'familymembers/index'
+        else
+            redirect '/login'
+        end
     end
 
     get '/familymembers/new' do
-        @user = Helpers.current_user(session)
-        @members = Familymember.all
-        erb :'familymembers/new'
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            
+            
+            
+            @members = Familymember.all
+            erb :'familymembers/new'
+        else
+            redirect '/login'
+        end
     end
     
     get '/familymembers/:id' do
