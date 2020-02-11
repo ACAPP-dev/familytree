@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    @user = User.find_by(id: session[:user_id])
+    @user = Helpers.current_user(session)
     erb :index
   end
 
@@ -19,13 +19,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    #binding.pry
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id 
       redirect '/families'
     else
-      #message that login failed
+      #message that login failed?
       redirect '/login'
     end
   end
@@ -34,4 +33,5 @@ class ApplicationController < Sinatra::Base
     session.clear
     redirect '/login'
   end
+  
 end

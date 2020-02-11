@@ -3,26 +3,26 @@ require './config/environment'
 class FamilymembersController < ApplicationController
     
     get '/familymembers' do
-        @user = User.find_by(id: session[:user_id])
+        @user = Helpers.current_user(session)
         @familymembers = Familymember.all
         erb :'familymembers/index'
     end
 
     get '/familymembers/new' do
-        @user = User.find_by(id: session[:user_id])
+        @user = Helpers.current_user(session)
         @members = Familymember.all
         erb :'familymembers/new'
     end
     
     get '/familymembers/:id' do
-        @user = User.find_by(id: session[:user_id])
+        @user = Helpers.current_user(session)
         @familymember = Familymember.find(params[:id])
         erb :'familymembers/show'
     end
 
     get '/familymembers/family/:id' do
         #Show family members from selected family
-        @user = User.find_by(id: session[:user_id])
+        @user = Helpers.current_user(session)
         @family = Family.find_by(id: params[:id])
         @familymembers = @family.familymembers
         erb :'familymembers/index_by_family'
@@ -31,7 +31,7 @@ class FamilymembersController < ApplicationController
     end
 
     get '/familymembers/:id/edit' do
-        @user = User.find_by(id: session[:user_id])
+        @user = Helpers.current_user(session)
         @familymember = Familymember.find(params[:id])
         @family = Family.find_by(id: @familymember.family.id)
         @members = @family.familymembers

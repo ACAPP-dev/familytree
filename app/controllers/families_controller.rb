@@ -3,48 +3,66 @@ require './config/environment'
 class FamiliesController < ApplicationController
 
     get '/families' do
-        @families = Family.all
-        @user = User.find_by(id: session[:user_id])
-        erb :'families/index'
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            @families = []
+
+            Family.all.each do |family|
+                @families << family if family.users.any?{|user| user.id==@user.id}
+            end    
+            erb :'families/index'
+        else
+            redirect '/login'
+        end
     end
 
     get '/families/new' do
-        @user = User.find_by(id: session[:user_id])
-        #verify logged in
-        erb :'families/new'
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            erb :'families/new'
+        else
+            redirect '/login'
+        end
     end
 
     post '/families' do
-        #binding.pry
-        user = User.find_by(id: session[:user_id])
-        if user
-            family = user.families.build(params[:family])
+        user_now = Helpers.current_user(session)
+        if user_now
+            new_family = user_now.families.build(params[:family])
+
+            if new_family.valid?
+                user_now.save
+                redirect '/families'
+            else
+                #add message about failure to add new family
+                redirect '/families/new'
+            end
         else
-            family = Family.create(params[:family])
-        end
-        if family.valid?
-            family.save
-            #add message about success creating new family
-            redirect '/families'
-        else
-             #add message about failure to add new family
-             redirect '/families/new'
+            redirect '/login'
         end
     end
 
     get '/families/:id' do
-        @user = User.find_by(id: session[:user_id])
-        @family = Family.find(params[:id])
-        @family_users = []
-        @family.users.each do |user|
-            @family_users << [user.username, user.first_name, user.last_name]
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            family_now = Family.find_by(id: params[:id])
+            if family_now && family_now.users.any?{|user| user.id==@user.id}
+                @family = family_now
+                @family_users = []
+                @family.users.each do |user|
+                    @family_users << [user.username, user.first_name, user.last_name]
+                end   
+            else
+                redirect '/'
+            end
+            erb :'families/show'
+        else
+            redirect '/login'
         end
-        #binding.pry
-        erb :'families/show'
     end
 
     get '/families/:id/edit' do
-        @user = User.find_by(id: session[:user_id])
+        @user = Helpers.current_user(session)
         @family = Family.find(params[:id])
         #@family_users = []
         #@family.users.each do |user|
