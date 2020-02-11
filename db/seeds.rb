@@ -86,7 +86,7 @@ lifamilymembers = [
                         {first_name: 'Ashleigh', last_name: 'Simon', gender: 'female'},
                         {first_name: 'Jessica', last_name: 'Zhang', gender: 'female'},
                         {first_name: 'Jolynn', last_name: 'Zhang', gender: 'female'},
-                        {first_name: 'Bi', last_name: 'Hua', gender: 'female'},
+                        {first_name: 'Bihua', last_name: 'Ye', gender: 'female'},
                         {first_name: 'Dad', last_name: 'of Sharon', gender: 'male'},
                         {first_name: 'Paternal GMA', last_name: 'of Sharon', gender: 'female'},
                         {first_name: 'Paternal GPA', last_name: 'of Sharon', gender: 'male'},
