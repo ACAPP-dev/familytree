@@ -38,8 +38,8 @@ class FamilymembersController < ApplicationController
     get '/familymembers/:id' do
         if Helpers.logged_in?(session)
             @user = Helpers.current_user(session)
-            familymember_now = Familymember.find(params[:id])
-            if @user.families.any?{|family| family.id == familymember_now.family.id}
+            familymember_now = Familymember.find_by(id: params[:id])
+            if familymember_now && @user.families.any?{|family| family.id == familymember_now.family.id}
                 @familymember = familymember_now
                 erb :'familymembers/show'
             else
@@ -67,35 +67,47 @@ class FamilymembersController < ApplicationController
     end
 
     get '/familymembers/:id/edit' do
-        @user = Helpers.current_user(session)
-        @familymember = Familymember.find(params[:id])
-        @family = Family.find_by(id: @familymember.family.id)
-        @members = @family.familymembers
-        @husband = @familymember.relationships.find{|relation| relation.relation_type == "husband"}
-        @wife = @familymember.relationships.find{|relation| relation.relation_type == "wife"}
-        @mother = @familymember.relationships.find{|relation| relation.relation_type == "mother"}
-        @father = @familymember.relationships.find{|relation| relation.relation_type == "father"}
-        #binding.pry
-        erb :'familymembers/edit'
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            familymember_now = Familymember.find_by(id: params[:id])
+            if familymember_now && @user.families.any?{|family| family.id == familymember_now.family.id}
+                @familymember = familymember_now
+                @family = Family.find_by(id: @familymember.family.id)
+                @members = @family.familymembers
+                @husband = @familymember.relationships.find{|relation| relation.relation_type == "husband"}
+                @wife = @familymember.relationships.find{|relation| relation.relation_type == "wife"}
+                @mother = @familymember.relationships.find{|relation| relation.relation_type == "mother"}
+                @father = @familymember.relationships.find{|relation| relation.relation_type == "father"}
+                erb :'familymembers/edit'
+            else
+                redirect '/families'
+            end
+        else
+            redirect '/login'
+        end
     end
 
-    post '/familymembers' do
-        family_object = Family.find_by(surname: "Capp")
-        a = Familymember.new(params[:familymember])
-        a.family = family_object
-        #binding.pry
-        params[:relationships].each do |relationship|
-          #binding.pry
-          if relationship[:relation_type] != "none" && relationship.has_key?("related_familymember")
-            related_familymember_object = Familymember.find(relationship[:related_familymember])
-            rel = Relationship.new(relation_type: relationship[:relation_type])
-            rel.related_familymember = related_familymember_object
-            rel.save
-            a.relationships << rel
-          end
+    post '/familymembers/:family_id' do
+        family_object = Family.find_by(id: params[:family_id].to_i)
+        if family_object
+            new_familymember = family_object.familymembers.build(params[:familymember])
+            if new_familymember.valid?
+                new_familymember.save
+                params[:relationships].each do |relationship|
+                    if relationship[:relation_type] != "none" && relationship.has_key?("related_familymember")
+                        related_familymember_object = Familymember.find(relationship[:related_familymember])
+                        rel = Relationship.new(relation_type: relationship[:relation_type])
+                        rel.related_familymember = related_familymember_object
+                        rel.save
+                        new_familymember.relationships << rel
+                    end
+                end
+                new_familymember.save
+                redirect "/familymembers/#{new_familymember.id}"
+            end
+        else
+            redirect "/familymembers/new/#{family_object.id}"
         end
-        a.save
-        redirect "/familymembers/#{a.id}"
     end
     
     patch '/familymembers/:id' do

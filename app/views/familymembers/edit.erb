@@ -1,4 +1,5 @@
-<h2>Edit Family Member</h2>
+<h1>Edit Family Member</h1>
+<h2>Family Name: <%= @family.surname %></h2>
 
 <form class="familymembers" action="/familymembers/<%= @familymember.id %>" method="POST">
     <input type="hidden" name="_method" value="PATCH">
@@ -9,6 +10,10 @@
 
 <div class="container">
     <table>
+        <tr>
+            <td>Married Last Name (if applicable):</td>
+            <td><input type="text" name="[familymember]married_last_name" value="<%= @familymember.married_last_name %>" /></td>
+        </tr>
         <tr>
             <td>Gender</td>
             <td><input type="radio" name="[familymember]gender" value="male" <%= 'checked' if @familymember.gender=="male" %> /> Male <span>

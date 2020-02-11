@@ -51,7 +51,7 @@ class FamiliesController < ApplicationController
                     @family_users << [user.username, user.first_name, user.last_name]
                 end   
             else
-                redirect '/'
+                redirect '/families'
             end
             erb :'families/show'
         else
