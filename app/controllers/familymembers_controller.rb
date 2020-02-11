@@ -104,9 +104,11 @@ class FamilymembersController < ApplicationController
                 end
                 new_familymember.save
                 redirect "/familymembers/#{new_familymember.id}"
+            else
+                redirect "/familymembers/new/#{family_object.id}"
             end
         else
-            redirect "/familymembers/new/#{family_object.id}"
+            redirect "/families"
         end
     end
     
@@ -116,11 +118,9 @@ class FamilymembersController < ApplicationController
         wife_object = familymember.relationships.find{|relation| relation.relation_type == "wife"}
         mother_object = familymember.relationships.find{|relation| relation.relation_type == "mother"}
         father_object = familymember.relationships.find{|relation| relation.relation_type == "father"}
-        #binding.pry
         if familymember.update(params[:familymember])
             #update relationships
             if params[:relationships][0][:relation_type] == "husband" && params[:relationships][0].has_key?("related_familymember")
-                #binding.pry
                 if wife_object
                     index = familymember.relationships.find_index{|element| element[:relation_type] == "wife"}
                     familymember.relationships[index].delete

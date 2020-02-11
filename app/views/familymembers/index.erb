@@ -22,7 +22,7 @@
          <td><%= member.family.surname %></td>
          <td class="no-wrap">
             <% member.relationships.each do |relationship| %>
-               <%= relationship.relation_type.capitalize %>  
+               <%= relationship.relation_type.capitalize %>:  
                <%= relationship.related_familymember.first_name %>
                <%= relationship.related_familymember.last_name %>
                <br>
