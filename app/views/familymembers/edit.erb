@@ -1,6 +1,6 @@
 <h2>Edit Family Member</h2>
 
-<form action="/familymembers/<%= @familymember.id %>" method="POST">
+<form class="familymembers" action="/familymembers/<%= @familymember.id %>" method="POST">
     <input type="hidden" name="_method" value="PATCH">
     <h4>First Name: <input type="text" name="[familymember]first_name"
         value="<%= @familymember.first_name %>" /></h4>

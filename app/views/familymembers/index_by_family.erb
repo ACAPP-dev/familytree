@@ -8,17 +8,28 @@
       <th>Gender</th>
       <th>Birthdate</th>
       <th>Hometown</th>
+      <th>Relationships</th>
       <th>View Details</th>
+      <th>Edit Member</th>
    </tr>
 
    <% @familymembers.each do |member| %>
       <tr>
          <td><%= member.first_name %> <%= member.last_name %></td>
          <td><%= member.married_last_name %></td>
-         <td><%= member.gender %></td>
+         <td><%= member.gender.capitalize %></td>
          <td><%= member.birth_date %></td>
          <td><%= member.home_town %></td>
-         <td><a class="button" href="/familymembers/<%= member.id %>">View Details</a>
+         <td class="no-wrap">
+            <% member.relationships.each do |relationship| %>
+            <%= relationship.relation_type.capitalize %>: 
+            <%= relationship.related_familymember.first_name %>
+            <%= relationship.related_familymember.last_name %>
+            <br>
+            <% end %>
+         </td>
+         <td><a class="small_button" href="/familymembers/<%= member.id %>">View Details</a></td>
+         <td><a class="small_button" href="/familymembers/<%= member.id %>/edit">Edit Member</a></td>
       </tr>         
    <% end %>
 

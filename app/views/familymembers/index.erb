@@ -9,16 +9,25 @@
       <th>Birthdate</th>
       <th>Hometown</th>
       <th>Family Name</th>
+      <th class="no-wrap"> Relationships</th>
    </tr>
 
    <% @familymembers.each do |member| %>
       <tr>
-         <td><%= member.first_name %> <%= member.last_name %></td>
+         <td class="no-wrap"><%= member.first_name %> <%= member.last_name %></td>
          <td><%= member.married_last_name %></td>
-         <td><%= member.gender %></td>
+         <td><%= member.gender.capitalize %></td>
          <td><%= member.birth_date %></td>
          <td><%= member.home_town %></td>
          <td><%= member.family.surname %></td>
+         <td class="no-wrap">
+            <% member.relationships.each do |relationship| %>
+            <%= relationship.relation_type.capitalize %>: 
+            <%= relationship.related_familymember.first_name %>
+            <%= relationship.related_familymember.last_name %>
+            <br>
+            <% end %>
+         </td>
       </tr>         
    <% end %>
 

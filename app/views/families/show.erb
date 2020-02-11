@@ -2,18 +2,41 @@
 
 <h2>Family Name: <%= @family.surname %></h2>
 
-<p>Family Code: <%= @family.family_code %></p>
-<p>Description: <%= @family.description %></p>
-<p>Family Logo (Future Enhancement): <%= @family.logo %></p>
-<p>Family Color (Future Enhancement): <%= @family.color %></p>
-<p>Family Photo (Future Enhancement): <%= @family.photo %></p>
-<p>Users Authorized to Make Changes to Family:
-    <ol>
-        <% @family_users.each do |user| %>
-            <li>User Name: <%= user[0] %> Name: <%= user[1] %> <%= user[2] %></li>
-        <% end %>
-    </ol></p>
-<br>
-<br>
+<table>
+    <tr>
+        <td>Family Code: </td>
+        <td><%= @family.family_code %></td>
+    </tr>
+    <tr>
+        <td>Description: </td>
+        <td><%= @family.description %></td>
+    </tr>
+    <tr>
+        <td>Family Logo (Future Enhancement): </td>
+        <td><%= @family.logo %></td>
+    </tr>
+    <tr>
+        <td>Family Color (Future Enhancement): </td>
+        <td><%= @family.color %></td>
+    </tr>
+    <tr>
+        <td>Family Photo (Future Enhancement): </td>
+        <td><%= @family.photo %></td>
+    </tr>
+    <br>
+    </table>
+    <br>
+    <br>
+    <p align="center">Users Authorized to Make Changes to Family:<p>
+    <table>
+                <% @family_users.each do |user| %>
+                   <tr>
+                        <td>User Name: </td>
+                        <td><%= user[0] %> </td>
+                        <td>Name: </td>
+                        <td><%= user[1] %> <%= user[2] %></td>
+                   </tr>
+                <% end %>
+</table>
 <a class="button" href="/families/<%= @family.id %>/edit">Edit Family</a>
 <% # Future addition? : Ability to delete family (if no familymembers in family) %>

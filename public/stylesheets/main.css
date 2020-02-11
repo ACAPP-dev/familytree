@@ -13,14 +13,45 @@
 
   /* --- Main Index Page Styles --- */
 
+  #home_background {
+    background-image: url("/images/family_portrait.jpg");
+    background-size: cover;
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+
+  }
+
+  #signin_background {
+    background-image: url("/images/beautiful_tree.jpg");
+    background-size: cover;
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+  }
+
   div.container {
     display: block;
-    width: 75%;
+    width: 95%;
     border: solid 2px black;
     border-radius: 12px;
     text-align: center;
     margin: 5px auto;
+  }
 
+  a.small_button {
+    display: block;
+    margin: 10px auto;
+    width: 75px;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #008CBA;
+    border-radius: 12px;
+  }
+
+  a.small_button:hover{
+    background-color: darkgray;
   }
 
   a.button {
@@ -32,7 +63,8 @@
     text-align: center;
     text-decoration: none;
     font-size: 20px;
-    background-color: #008CBA;
+    background-color: #2E9EB3;
+    /* background-color: #008CBA; */
     border-radius: 12px;
   }
 
@@ -49,7 +81,12 @@
   }
 
   th {
+    background-color: #B37B37;
     text-align: center;
+  }
+
+  tr:nth-child(odd) {
+    background-color: lightgrey;
   }
 
   td {
@@ -57,8 +94,9 @@
   }
 
   th, td {
-    border: 1px solid darkgray;
+    /* border: 1px solid darkgray; */
     padding: 5px;
+    
 
   }
 
@@ -107,6 +145,16 @@
 
   /* --- General Page Styles --- */
 
+  .no-wrap {
+    white-space: nowrap;
+  }
+
+  p.text_block{
+    margin-left: 20px;
+    display: inline-flex;
+    background-color: white;
+  }
+
   input[type="submit"] {
     display: block;
     font-size: 30px;
@@ -129,7 +177,7 @@
   }
 
   .wrapper {
-    background: #fff;
+    background: #FAF1ED;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
