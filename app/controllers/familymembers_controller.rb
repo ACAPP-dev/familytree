@@ -11,7 +11,7 @@ class FamilymembersController < ApplicationController
                 families << family if family.users.any?{|user| user.id==@user.id}
             end
             families.each do |family|
-                @familymembers << family.familymembers if family.users.any? {|user| user.id==@user.id}
+                @familymembers << family.familymembers if family.users.any?{|user| user.id==@user.id}
             end
             @familymembers.flatten!
             erb :'familymembers/index'
@@ -20,33 +20,50 @@ class FamilymembersController < ApplicationController
         end
     end
 
-    get '/familymembers/new' do
+    get '/familymembers/new/:family_id' do
         if Helpers.logged_in?(session)
             @user = Helpers.current_user(session)
-            
-            
-            
-            @members = Familymember.all
-            erb :'familymembers/new'
+            if @user.families.any?{|family| family.id==params[:family_id].to_i}
+                @family = Family.find_by(id: params[:family_id])
+                @familymembers = @family.familymembers
+                erb :'familymembers/new'
+            else
+                redirect '/families'
+            end            
         else
             redirect '/login'
         end
     end
     
     get '/familymembers/:id' do
-        @user = Helpers.current_user(session)
-        @familymember = Familymember.find(params[:id])
-        erb :'familymembers/show'
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            familymember_now = Familymember.find(params[:id])
+            if @user.families.any?{|family| family.id == familymember_now.family.id}
+                @familymember = familymember_now
+                erb :'familymembers/show'
+            else
+                redirect '/families'
+            end
+        else
+            redirect '/login'
+        end
     end
 
-    get '/familymembers/family/:id' do
+    get '/familymembers/family/:family_id' do
         #Show family members from selected family
-        @user = Helpers.current_user(session)
-        @family = Family.find_by(id: params[:id])
-        @familymembers = @family.familymembers
-        erb :'familymembers/index_by_family'
-        #binding.pry
-
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            if @user.families.any?{|family| family.id==params[:family_id].to_i}
+                @family = Family.find_by(id: params[:family_id])
+                @familymembers = @family.familymembers
+                erb :'familymembers/index_by_family'
+            else
+                redirect '/families'
+            end           
+        else
+            redirect '/login'
+        end
     end
 
     get '/familymembers/:id/edit' do

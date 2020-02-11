@@ -7,6 +7,7 @@
          <th>Description</th>
          <th>View Family</th>
          <th>View Family Members</th>
+         <th>Add New Family Member</th>
       </tr>
 
 
@@ -15,8 +16,9 @@
          <td><a href="/families/<%= family.id %>"><%= family.family_code %></a></td>
          <td><%= family.surname %></td>
          <td><%= family.description %></td>
-         <td><a class="button" href="/families/<%= family.id %>">View Family</a></td>
-         <td><a class="button" href="/familymembers/family/<%= family.id %>">View Family Members</a></td>
+         <td><a class="med_button" href="/families/<%= family.id %>">View Family Details</a></td>
+         <td><a class="med_button" href="/familymembers/family/<%= family.id %>">View Family Members</a></td>
+         <td><a class="med_button" href="/familymembers/new/<%= family.id %>">Create New Family Member</a></td>
       </tr> 
     <% end %>
 
