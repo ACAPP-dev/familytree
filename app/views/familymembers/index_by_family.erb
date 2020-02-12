@@ -11,6 +11,7 @@
       <th>Relationships</th>
       <th>View Details</th>
       <th>Edit Member</th>
+      <th>View Family Tree</th>
    </tr>
 
    <% @familymembers.each do |member| %>
@@ -30,6 +31,7 @@
          </td>
          <td><a class="small_button" href="/familymembers/<%= member.id %>">View Details</a></td>
          <td><a class="small_button" href="/familymembers/<%= member.id %>/edit">Edit Member</a></td>
+         <td><a class="small_button" href="/familytree/<%= member.id %>">View Tree</a></td>
       </tr>         
    <% end %>
 

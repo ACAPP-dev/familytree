@@ -34,39 +34,51 @@ class ApplicationController < Sinatra::Base
     redirect '/login'
   end
   
-  get '/familytree1' do
-    @familymember = Familymember.find_by(first_name: "Sharon")
-    @familytree = {}
+  get '/familytree/:id' do
+    if Helpers.logged_in?(session)
+      @user = Helpers.current_user(session)
+      familymember_now = Familymember.find_by(id: params[:id])
+      if familymember_now.family.users.any?{|user| user.id == @user.id} 
+        @familymember = Familymember.find_by(first_name: "Andrew")
+        @familytree = {}
 
-    @familytree["parents"] = relationship_hash(@familymember)
+        @familytree["parents"] = relationship_hash(@familymember)
 
-    father = @familymember.relationships.find_by(relation_type: "father").related_familymember
+        father = @familymember.relationships.find_by(relation_type: "father").related_familymember
+        @familytree["paternal_grandparents"] = relationship_hash(father)
 
-    @familytree["paternal_grandparents"] = relationship_hash(father)
+        mother = @familymember.relationships.find_by(relation_type: "mother").related_familymember
+        @familytree["maternal_grandparents"] = relationship_hash(mother)
 
-    mother = @familymember.relationships.find_by(relation_type: "mother").related_familymember
+        paternal_gpa_parents = father.relationships.find_by(relation_type: "father").related_familymember
+        @familytree["paternal_gpa_parents"] = relationship_hash(paternal_gpa_parents)
+        
+        paternal_gma_parents = father.relationships.find_by(relation_type: "mother").related_familymember
+        @familytree["paternal_gma_parents"] = relationship_hash(paternal_gma_parents)
 
-    @familytree["maternal_grandparents"] = relationship_hash(mother)
+        maternal_gpa_parents = mother.relationships.find_by(relation_type: "father").related_familymember
+        @familytree["maternal_gpa_parents"] = relationship_hash(maternal_gpa_parents)
+        
+        maternal_gma_parents = mother.relationships.find_by(relation_type: "mother").related_familymember
+        @familytree["maternal_gma_parents"] = relationship_hash(maternal_gma_parents)
 
-    p @familytree
-    
-    erb :familytree1
+        @familytree
+        erb :familytree
+      else
+        redirect '/families'
+      end
+    else
+      redirect '/login'
+    end  
   end
 
   def relationship_hash(familymember_now)
     new_relation_hash = {}
     familymember_now.relationships.each do |relationship|
-      #binding.pry
-
       new_relation_hash[relationship.relation_type] = relationship.related_familymember.first_name + 
       " " + relationship.related_familymember.last_name
-
     end
-    #binding.pry
     new_relation_hash
   end
 
-  def mother(familymember_now)
-
-  end
 end

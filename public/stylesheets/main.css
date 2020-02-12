@@ -15,6 +15,8 @@
 
   div#tree1 {
     width: 100%;
+    height: 100%;
+    background-color: lightgreen;
   }
 
   div.tree_box {
@@ -37,7 +39,7 @@
     text-align: center;
     justify-content: space-evenly;
     
-    height: 55px;
+    height: auto;
      
   }
 

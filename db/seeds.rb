@@ -33,7 +33,15 @@ cappfamilymembers = [
                         {first_name: 'Gladys', last_name: 'Capp', gender: 'female'},
                         {first_name: 'Aaron', last_name: 'Capp', gender: 'male'},
                         {first_name: 'Velma', last_name: 'Durbin', gender: 'female'},
-                        {first_name: 'Jim', last_name: 'Durbin', gender: 'male'}
+                        {first_name: 'Jim', last_name: 'Durbin', gender: 'male'},
+                        {first_name: 'GGMA Anger', last_name: 'Anger', gender: 'female'},
+                        {first_name: 'GGPA Anger', last_name: 'Anger', gender: 'male'},
+                        {first_name: 'GGMA Durbin', last_name: 'Durbin', gender: 'female'},
+                        {first_name: 'GGPA Durbin', last_name: 'Durbin', gender: 'male'},
+                        {first_name: 'GGMA', last_name: 'GMA Side', gender: 'female'},
+                        {first_name: 'GGPA', last_name: 'GMA Side', gender: 'male'},
+                        {first_name: 'GGMA Capp', last_name: 'Capp', gender: 'female'},
+                        {first_name: 'GGPA Capp', last_name: 'Capp', gender: 'male'}
                     ]
 
 cappfamilymembers.each do |member| 
@@ -62,9 +70,26 @@ cappfamilyrelationships =   [
                                 {first_name: 'Cliff', relation_type: 'father', related_familymember_first_name: 'Aaron'},
                                 {first_name: 'Cliff', relation_type: 'mother', related_familymember_first_name: 'Gladys'},
                                 {first_name: 'Gladys', relation_type: 'husband', related_familymember_first_name: 'Aaron'},
+                                {first_name: 'Gladys', relation_type: 'father', related_familymember_first_name: 'GGPA'},
+                                {first_name: 'Gladys', relation_type: 'mother', related_familymember_first_name: 'GGMA'},
                                 {first_name: 'Aaron', relation_type: 'wife', related_familymember_first_name: 'Gladys'},
+                                {first_name: 'Aaron', relation_type: 'father', related_familymember_first_name: 'GGPA Capp'},
+                                {first_name: 'Aaron', relation_type: 'mother', related_familymember_first_name: 'GGMA Capp'},
                                 {first_name: 'Velma', relation_type: 'husband', related_familymember_first_name: 'Jim'},
+                                {first_name: 'Velma', relation_type: 'father', related_familymember_first_name: 'GGPA Anger'},
+                                {first_name: 'Velma', relation_type: 'mother', related_familymember_first_name: 'GGMA Anger'},
                                 {first_name: 'Jim', relation_type: 'wife', related_familymember_first_name: 'Velma'},
+                                {first_name: 'Jim', relation_type: 'father', related_familymember_first_name: 'GGPA Durbin'},
+                                {first_name: 'Jim', relation_type: 'mother', related_familymember_first_name: 'GGMA Durbin'},
+
+                                {first_name: 'GGMA', relation_type: 'husband', related_familymember_first_name: 'GGPA'},
+                                {first_name: 'GGPA', relation_type: 'wife', related_familymember_first_name: 'GGMA'},
+                                {first_name: 'GGMA Capp', relation_type: 'husband', related_familymember_first_name: 'GGPA Capp'},
+                                {first_name: 'GGPA Capp', relation_type: 'wife', related_familymember_first_name: 'GGMA Capp'},
+                                {first_name: 'GGMA Anger', relation_type: 'husband', related_familymember_first_name: 'GGPA Anger'},
+                                {first_name: 'GGPA Anger', relation_type: 'wife', related_familymember_first_name: 'GGMA Anger'},
+                                {first_name: 'GGMA Durbin', relation_type: 'husband', related_familymember_first_name: 'GGPA Durbin'},
+                                {first_name: 'GGPA Durbin', relation_type: 'wife', related_familymember_first_name: 'GGMA Durbin'}
                             ]
 
 Familymember.all.where(family: family1).each do |each_member|

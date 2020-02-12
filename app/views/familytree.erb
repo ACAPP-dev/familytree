@@ -1,7 +1,9 @@
 <h1>Family Tree</h1>
 
 <div id="tree1">
-
+    <br>
+    <br>
+    <br>
     <div class="tree_box" id="main_box">
         <%= @familymember.first_name %> <%= @familymember.last_name %>
     </div>
@@ -38,41 +40,39 @@
     <div class="parent">
         <div class="great-grandparents">
             <div class="child" id="mother">
-                Great-GrandMother
+                 <%= @familytree["maternal_gma_parents"]["mother"] %>
             </div>
             <div class="child" id="father">
-                Great-GrandFather
+                <%= @familytree["maternal_gma_parents"]["father"] %>
             </div>
             <div class="child" id="mother">
-                Great-GrandMother
+                <%= @familytree["maternal_gpa_parents"]["mother"] %>
             </div>
             <div class="child" id="father">
-                Great-GrandFather
+                <%= @familytree["maternal_gpa_parents"]["father"] %>
             </div>
         </div>
         
         <div class="great-grandparents">
             <div class="child" id="mother">
-                Great-GrandMother
+                <%= @familytree["paternal_gma_parents"]["mother"] %>
             </div>
             <div class="child" id="father">
-                Great-GrandFather
+                <%= @familytree["paternal_gma_parents"]["father"] %>
             </div>
             <div class="child" id="mother">
-                Great-GrandMother
+                <%= @familytree["paternal_gpa_parents"]["mother"] %>
             </div>
             <div class="child" id="father">
-                Great-GrandFather
+                <%= @familytree["paternal_gpa_parents"]["father"] %>
             </div>
         </div>
     </div>
-</div>
-
-
-   
-
-
+    <br>
+    <br>
+    <br>
 
 
 </div>
+
 

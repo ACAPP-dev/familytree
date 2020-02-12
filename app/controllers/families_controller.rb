@@ -26,7 +26,7 @@ class FamiliesController < ApplicationController
 
     post '/families' do
         user_now = Helpers.current_user(session)
-        if user_now
+        if user_now && Helpers.logged_in?(session)
             new_family = user_now.families.build(params[:family])
             if new_family.valid?
                 user_now.save
@@ -79,11 +79,15 @@ class FamiliesController < ApplicationController
         current_user = Helpers.current_user(session)
         if Helpers.logged_in?(session) && current_user
             @family = Family.find_by(id: params[:id])
-            @family.update(params[:family])
-            if @family.valid?
-                redirect '/families'
+            if @family.users.any?{|user| user.id == current_user.id}
+                @family.update(params[:family])
+                if @family.valid?
+                    redirect '/families'
+                else
+                    #message that update failed?
+                    redirect "/families/#{@family.id}"
+                end
             else
-                #message that update failed?
                 redirect "/families/#{@family.id}"
             end
         else
