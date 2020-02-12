@@ -11,6 +11,54 @@
     width: 100%;
   }
 
+  /* --- Family Tree View Styles --- */
+
+  div#tree1 {
+    width: 100%;
+  }
+
+  div.tree_box {
+    border: 1px solid black;
+    text-align: center;
+    
+
+  }
+
+  div#main_box {
+    margin: 5px auto;
+    width: 75%;
+    height: 50px;
+
+  }
+
+  div#parents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+    width: 75%;
+    height: 55px;
+    
+    
+  }
+
+  div#mother {
+    
+    width: 48%;
+    margin: auto;
+
+  }
+
+  div#father {
+    
+    width: 48%;
+    margin: auto;
+  }
+
+
+
+
   /* --- Main Index Page Styles --- */
 
   #home_background {
