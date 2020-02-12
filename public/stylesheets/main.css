@@ -22,15 +22,12 @@
   div.tree_box {
     border: 1px solid black;
     text-align: center;
-    
-
   }
 
   div#main_box {
     margin: 5px auto;
     width: 75%;
     height: 50px;
-
   }
 
   div.parent {
@@ -38,9 +35,7 @@
     display: flex;
     text-align: center;
     justify-content: space-evenly;
-    
-    height: auto;
-     
+    height: auto; 
   }
 
   div.great-grandparents {
@@ -49,7 +44,6 @@
     display: flex;
     text-align: center;
     justify-content: space-evenly;
-
   }
 
   div.grandparents {
@@ -58,8 +52,6 @@
     display: flex;
     text-align: center;
     justify-content: space-evenly;
-
-
   }
 
   div.child {
@@ -67,25 +59,15 @@
     margin: 10px;
     width: 45%;
     height: 100%;
-  
   }
-
-
-
-
-
 
   /* --- Main Index Page Styles --- */
 
   #home_background {
-    background-image: linear-gradient(
-      rgba(red, 0.5),
-      rgba(white, 0.5)),
-      url("/images/family_portrait.jpg");
+    background-image: linear-gradient(rgba(255,255,255,0.7), 
+      rgba(255,255,255,0.7)), url("/images/family_portrait.jpg");
     background-size: cover;
-    /* background-image: url("/images/family_portrait.jpg"); */
-
-    /* background-color: #cccccc; */
+    background-color: #cccccc;
     background-repeat: no-repeat;
   }
 
@@ -94,6 +76,12 @@
     background-size: cover;
     background-color: #cccccc;
     background-repeat: no-repeat;
+    height: 750px;
+  }
+
+  form#signin {
+    width: 95%;
+    margin: 5px auto;
   }
 
   div.container {
@@ -180,8 +168,6 @@
   th, td {
     /* border: 1px solid darkgray; */
     padding: 5px;
-    
-
   }
 
   /* --- Navigation Bar Styles --- */
@@ -190,7 +176,6 @@
     width: 79.5%;
     max-width: 1015px;
     margin: 15px auto;
-    
   }
 
   #nav_list {
@@ -204,7 +189,6 @@
   li.nav_link {
     float: left;
     border-right: 2px solid darkgray;
-   
   }
 
   li.nav_link a {
@@ -224,7 +208,6 @@
     color: white;
     text-align: center;
     padding: .5em;
-
   }
 
   /* --- General Page Styles --- */
@@ -234,8 +217,12 @@
   }
 
   p.text_block{
-    margin-left: 20px;
-    display: inline-flex;
+    margin: 20px auto;
+    position: relative;
+    top: 500px;
+    width: 200px;
+    height: 22px;
+    text-align: center;
     background-color: white;
   }
 

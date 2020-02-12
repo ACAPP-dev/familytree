@@ -1,16 +1,19 @@
 <h1>Create a New Family</h1>
 
 <form action="/families" method="POST">
-    <p>Family Surname (required field): <input type="text" name="family[surname]" /></p>
+    <p>Family Surname*: <input type="text" name="family[surname]" /></p>
     <br>
     <p>Description: <input type="text" name="family[description]" /></p>
     <br>
-    <h2>Keep Family Private (required fields)</h2>
-    <p>Family Code: <input type="text" name="family[family_code]" /></p>
+    <h2>Family Privacy</h2>
+    <p>Family Code*: <input type="text" name="family[family_code]" /></p>
     <br>
-    <p>Family Password: <input type="password" name="family[password]" /></p>
+    <p>Family Password*: <input type="password" name="family[password]" /></p>
     <br>
     <br>
     <input type="submit" value="Create Family" />
+    <br>
+    <br>
+    <p>* Required Fields</p>
 </form>
 

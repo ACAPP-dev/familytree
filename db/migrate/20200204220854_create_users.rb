@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :password_digest
       t.string :created_time_stamp
       t.boolean :enabled
-      t.string :updated_time_stamp
+      #t.string :updated_time_stamp
     end
   end
 end

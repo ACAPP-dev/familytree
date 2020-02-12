@@ -15,9 +15,6 @@ ActiveRecord::Schema.define(version: 2020_02_04_220908) do
   create_table "families", force: :cascade do |t|
     t.string "surname"
     t.string "description"
-    t.string "logo"
-    t.string "color"
-    t.string "photo"
     t.string "family_code"
     t.string "password_digest"
   end
@@ -30,9 +27,6 @@ ActiveRecord::Schema.define(version: 2020_02_04_220908) do
     t.string "birth_date"
     t.string "death_date"
     t.string "home_town"
-    t.string "photo1"
-    t.string "photo2"
-    t.string "story"
     t.integer "family_id"
   end
 
@@ -54,9 +48,6 @@ ActiveRecord::Schema.define(version: 2020_02_04_220908) do
     t.string "email"
     t.string "username"
     t.string "password_digest"
-    t.string "created_time_stamp"
-    t.boolean "enabled"
-    t.string "updated_time_stamp"
   end
 
 end

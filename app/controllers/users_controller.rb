@@ -11,8 +11,7 @@ class UsersController < ApplicationController
         erb :'users/show'
     end
 
-    post '/users' do
-        #binding.pry
+    post '/users' dod
         user = User.create(params[:user])
         if user.valid?
             user.created_time_stamp = Time.now
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:id' do
-        "Update User Changes"
+        #Future Updates
     end
 
 end
