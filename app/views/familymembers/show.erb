@@ -1,5 +1,5 @@
 <h2>Family Member Detail</h2>
-<h3><%= @familymember.first_name %> <%= @familymember.last_name %> <%= "(#{@familymember.married_last_name})" if !@familymember.married_last_name.empty? %></h3>
+<h3><%= @familymember.first_name %> <%= @familymember.last_name %> <%= "(#{@familymember.married_last_name})" if @familymember.married_last_name? %></h3>
 
 <div class="container">
     <table>
