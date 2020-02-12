@@ -6,16 +6,70 @@
         <%= @familymember.first_name %> <%= @familymember.last_name %>
     </div>
 
-    <div id="parents">
-        <div class="tree_box" id="mother">
-            Mother
+    <div class="parent">
+        <div class="child" id="mother">
+            <%= @familytree["parents"]["mother"] %>
         </div>
-        <div class="tree_box" id="father">
-            father
+        <div class="child" id="father">
+        <%= @familytree["parents"]["father"] %>
         </div>
-
     </div>
 
+    <div class="parent">
+        <div class="grandparents">
+            <div class="child" id="mother">
+            <%= @familytree["maternal_grandparents"]["mother"] %>
+            </div>
+            <div class="child" id="father">
+            <%= @familytree["maternal_grandparents"]["father"] %>
+            </div>
+        </div>
+        
+        <div class="grandparents">
+            <div class="child" id="mother">
+            <%= @familytree["paternal_grandparents"]["mother"] %>
+            </div>
+            <div class="child" id="father">
+            <%= @familytree["paternal_grandparents"]["father"] %>
+            </div>
+        </div>
+    </div>
+
+    <div class="parent">
+        <div class="great-grandparents">
+            <div class="child" id="mother">
+                Great-GrandMother
+            </div>
+            <div class="child" id="father">
+                Great-GrandFather
+            </div>
+            <div class="child" id="mother">
+                Great-GrandMother
+            </div>
+            <div class="child" id="father">
+                Great-GrandFather
+            </div>
+        </div>
+        
+        <div class="great-grandparents">
+            <div class="child" id="mother">
+                Great-GrandMother
+            </div>
+            <div class="child" id="father">
+                Great-GrandFather
+            </div>
+            <div class="child" id="mother">
+                Great-GrandMother
+            </div>
+            <div class="child" id="father">
+                Great-GrandFather
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   
 
 
 

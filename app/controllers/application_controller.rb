@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
   end
   
   get '/familytree1' do
-    @familymember = Familymember.find_by(first_name: "Andrew")
+    @familymember = Familymember.find_by(first_name: "Sharon")
     @familytree = {}
 
     @familytree["parents"] = relationship_hash(@familymember)
@@ -48,16 +48,8 @@ class ApplicationController < Sinatra::Base
 
     @familytree["maternal_grandparents"] = relationship_hash(mother)
 
-    #binding.pry
-    #@familymember.relationships.each do |relationship|
-      #binding.pry
-     # @familytree[relationship.relation_type] = relationship.related_familymember.first_name + 
-      #  " " + relationship.related_familymember.last_name
-       # if relationship.relation_type == "father"
-        #  new_relation = Familymember.find_by(id: relationship.related_familymember.id)
-         # relationship_hash(new_relation)
-        #end
-   # end
+    p @familytree
+    
     erb :familytree1
   end
 

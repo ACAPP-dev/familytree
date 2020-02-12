@@ -76,13 +76,18 @@ class FamiliesController < ApplicationController
     end
 
     patch '/families/:id' do
-        @family = Family.find_by(id: params[:id])
-        @family.update(params[:family])
-        if @family.valid?
-            redirect '/families'
+        current_user = Helpers.current_user(session)
+        if Helpers.logged_in?(session) && current_user
+            @family = Family.find_by(id: params[:id])
+            @family.update(params[:family])
+            if @family.valid?
+                redirect '/families'
+            else
+                #message that update failed?
+                redirect "/families/#{@family.id}"
+            end
         else
-            #message that update failed?
-            redirect "/families/#{@family.id}"
+            redirect '/login'
         end
     end
     

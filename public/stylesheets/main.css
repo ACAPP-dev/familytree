@@ -31,30 +31,44 @@
 
   }
 
-  div#parents {
+  div.parent {
+    margin: 5px auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-
+    text-align: center;
+    justify-content: space-evenly;
     
-    width: 75%;
     height: 55px;
-    
-    
+     
   }
 
-  div#mother {
-    
-    width: 48%;
-    margin: auto;
+  div.great-grandparents {
+    width: 50%;
+    margin: 5px auto;
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
 
   }
 
-  div#father {
-    
-    width: 48%;
-    margin: auto;
+  div.grandparents {
+    width: 50%;
+    margin: 5px auto;
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+
+
   }
+
+  div.child {
+    border: 1px solid black;
+    margin: 10px;
+    width: 45%;
+    height: 100%;
+  
+  }
+
+
 
 
 
