@@ -39,28 +39,29 @@ class ApplicationController < Sinatra::Base
       @user = Helpers.current_user(session)
       familymember_now = Familymember.find_by(id: params[:id])
       if familymember_now.family.users.any?{|user| user.id == @user.id} 
-        @familymember = Familymember.find_by(first_name: "Andrew")
+        @familymember = familymember_now
         @familytree = {}
 
         @familytree["parents"] = relationship_hash(@familymember)
 
-        father = @familymember.relationships.find_by(relation_type: "father").related_familymember
-        @familytree["paternal_grandparents"] = relationship_hash(father)
-
-        mother = @familymember.relationships.find_by(relation_type: "mother").related_familymember
-        @familytree["maternal_grandparents"] = relationship_hash(mother)
-
-        paternal_gpa_parents = father.relationships.find_by(relation_type: "father").related_familymember
-        @familytree["paternal_gpa_parents"] = relationship_hash(paternal_gpa_parents)
+        father_rel = @familymember.relationships.find_by(relation_type: "father")
         
-        paternal_gma_parents = father.relationships.find_by(relation_type: "mother").related_familymember
-        @familytree["paternal_gma_parents"] = relationship_hash(paternal_gma_parents)
+        @familytree["paternal_grandparents"] = relationship_hash(father_rel.related_familymember) unless father_rel == nil
 
-        maternal_gpa_parents = mother.relationships.find_by(relation_type: "father").related_familymember
-        @familytree["maternal_gpa_parents"] = relationship_hash(maternal_gpa_parents)
+        mother_rel = @familymember.relationships.find_by(relation_type: "mother")
+        @familytree["maternal_grandparents"] = relationship_hash(mother_rel.related_familymember) unless mother_rel == nil
+
+        paternal_gpa_parents = father_rel.related_familymember.relationships.find_by(relation_type: "father") unless father_rel == nil
+        @familytree["paternal_gpa_parents"] = relationship_hash(paternal_gpa_parents.related_familymember) unless paternal_gpa_parents == nil
         
-        maternal_gma_parents = mother.relationships.find_by(relation_type: "mother").related_familymember
-        @familytree["maternal_gma_parents"] = relationship_hash(maternal_gma_parents)
+        paternal_gma_parents = father_rel.related_familymember.relationships.find_by(relation_type: "mother") unless father_rel == nil
+        @familytree["paternal_gma_parents"] = relationship_hash(paternal_gma_parents.related_familymember) unless paternal_gma_parents == nil
+
+        maternal_gpa_parents = mother_rel.related_familymember.relationships.find_by(relation_type: "father") unless mother_rel == nil
+        @familytree["maternal_gpa_parents"] = relationship_hash(maternal_gpa_parents.related_familymember) unless maternal_gpa_parents == nil
+        
+        maternal_gma_parents = mother_rel.related_familymember.relationships.find_by(relation_type: "mother") unless mother_rel == nil
+        @familytree["maternal_gma_parents"] = relationship_hash(maternal_gma_parents.related_familymember) unless maternal_gma_parents == nil
 
         @familytree
         erb :familytree

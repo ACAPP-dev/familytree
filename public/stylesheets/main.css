@@ -78,11 +78,15 @@
   /* --- Main Index Page Styles --- */
 
   #home_background {
-    background-image: url("/images/family_portrait.jpg");
+    background-image: linear-gradient(
+      rgba(red, 0.5),
+      rgba(white, 0.5)),
+      url("/images/family_portrait.jpg");
     background-size: cover;
-    background-color: #cccccc;
-    background-repeat: no-repeat;
+    /* background-image: url("/images/family_portrait.jpg"); */
 
+    /* background-color: #cccccc; */
+    background-repeat: no-repeat;
   }
 
   #signin_background {
@@ -135,8 +139,6 @@
     background-color: darkgray;
   }
 
-
-
   a.button {
     display: block;
     margin: 10px auto;
@@ -147,7 +149,6 @@
     text-decoration: none;
     font-size: 20px;
     background-color: #2E9EB3;
-    /* background-color: #008CBA; */
     border-radius: 12px;
   }
 

@@ -10,29 +10,29 @@
 
     <div class="parent">
         <div class="child" id="mother">
-            <%= @familytree["parents"]["mother"] %>
+            <%= @familytree["parents"]["mother"] if @familytree["parents"].has_key?("mother") %>
         </div>
         <div class="child" id="father">
-        <%= @familytree["parents"]["father"] %>
+        <%= @familytree["parents"]["father"] if @familytree["parents"].has_key?("father") %>
         </div>
     </div>
 
     <div class="parent">
         <div class="grandparents">
             <div class="child" id="mother">
-            <%= @familytree["maternal_grandparents"]["mother"] %>
+            <%= @familytree["maternal_grandparents"]["mother"] if @familytree.has_key?("maternal_grandparents") && @familytree["maternal_grandparents"].has_key?("mother") %>
             </div>
             <div class="child" id="father">
-            <%= @familytree["maternal_grandparents"]["father"] %>
+            <%= @familytree["maternal_grandparents"]["father"] if @familytree.has_key?("maternal_grandparents") && @familytree["maternal_grandparents"].has_key?("father") %>
             </div>
         </div>
         
         <div class="grandparents">
             <div class="child" id="mother">
-            <%= @familytree["paternal_grandparents"]["mother"] %>
+            <%= @familytree["paternal_grandparents"]["mother"] if @familytree.has_key?("paternal_grandparents") && @familytree["paternal_grandparents"].has_key?("mother") %>
             </div>
             <div class="child" id="father">
-            <%= @familytree["paternal_grandparents"]["father"] %>
+            <%= @familytree["paternal_grandparents"]["father"] if @familytree.has_key?("paternal_grandparents") && @familytree["paternal_grandparents"].has_key?("father") %>
             </div>
         </div>
     </div>
@@ -40,31 +40,31 @@
     <div class="parent">
         <div class="great-grandparents">
             <div class="child" id="mother">
-                 <%= @familytree["maternal_gma_parents"]["mother"] %>
+                 <%= @familytree["maternal_gma_parents"]["mother"] if @familytree.has_key?("maternal_gma_parents") && @familytree["maternal_gma_parents"].has_key?("mother") %>
             </div>
             <div class="child" id="father">
-                <%= @familytree["maternal_gma_parents"]["father"] %>
+                <%= @familytree["maternal_gma_parents"]["father"] if @familytree.has_key?("maternal_gma_parents") && @familytree["maternal_gma_parents"].has_key?("father") %>
             </div>
             <div class="child" id="mother">
-                <%= @familytree["maternal_gpa_parents"]["mother"] %>
+                <%= @familytree["maternal_gpa_parents"]["mother"] if @familytree.has_key?("maternal_gpa_parents") && @familytree["maternal_gpa_parents"].has_key?("mother") %>
             </div>
             <div class="child" id="father">
-                <%= @familytree["maternal_gpa_parents"]["father"] %>
+                <%= @familytree["maternal_gpa_parents"]["father"] if @familytree.has_key?("maternal_gpa_parents") && @familytree["maternal_gpa_parents"].has_key?("father") %>
             </div>
         </div>
         
         <div class="great-grandparents">
             <div class="child" id="mother">
-                <%= @familytree["paternal_gma_parents"]["mother"] %>
+                <%= @familytree["paternal_gma_parents"]["mother"] if @familytree.has_key?("paternal_gma_parents") && @familytree["paternal_gma_parents"].has_key?("mother") %>
             </div>
             <div class="child" id="father">
-                <%= @familytree["paternal_gma_parents"]["father"] %>
+                <%= @familytree["paternal_gma_parents"]["father"] if @familytree.has_key?("paternal_gma_parents") && @familytree["paternal_gma_parents"].has_key?("father") %>
             </div>
             <div class="child" id="mother">
-                <%= @familytree["paternal_gpa_parents"]["mother"] %>
+                <%= @familytree["paternal_gpa_parents"]["mother"] if @familytree.has_key?("paternal_gpa_parents") && @familytree["paternal_gpa_parents"].has_key?("mother") %>
             </div>
             <div class="child" id="father">
-                <%= @familytree["paternal_gpa_parents"]["father"] %>
+                <%= @familytree["paternal_gpa_parents"]["father"] if @familytree.has_key?("paternal_gpa_parents") && @familytree["paternal_gpa_parents"].has_key?("father") %>
             </div>
         </div>
     </div>
