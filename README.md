@@ -13,7 +13,7 @@ Create your own family tree and view relationships using flexible and easy to us
 
 Please see the following link to see an overview of the webapp on YouTube: https://youtu.be/QYip6aQGmZc
 
-My blog also talks about this project here: NEED
+My blog also talks about this project here: https://acapp-dev.github.io/second_project_-_sinatra_family_tree_web_app.
 
 ## Installation
 
@@ -29,7 +29,7 @@ Update Gem files using command:
     
     $ bundle update
 
-    Note: A few unique Gems are needed including sinatra, sinatra-flash, and activerecord.  You may need to install these gems before running bundle install.
+Note: A few unique Gems are needed including sinatra, sinatra-flash, and activerecord.  You may need to install these gems before running bundle install.
 
 ## Development
 
