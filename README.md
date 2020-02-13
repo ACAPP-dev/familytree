@@ -1,32 +1,34 @@
-# Domain Search Using GoDaddy API
+# Family Tree Website
 
-This Ruby Gem will search [godaddy.com](https://godaddy.com) for website domain availability and pricing using the GoDaddy Developer API.  You can search for a specific domain name or get a list of domains related to any keyword.  If you search for a specific domain and it is not available for purchase, a list of similar domain names will automatically appear.
+Create your own family tree and view relationships using flexible and easy to use forms!
+
+### Features
+<ul>
+    <li>Create unique username and password</li>
+    <li>Secure access to your families and familymembers</li>
+    <li>Create unlimited families and easily switch between families as needed</li>
+    <li>Create unlimited familymembers</li>
+    <li>View family tree for any familymember</li>
 
 Please see the following link to see an overview of the program on YouTube: https://youtu.be/sNQJ21qADlw
 
 My blog also talks about this project here: https://acapp-dev.github.io/finishing_my_first_class_ruby_cli_project
 
-Note that you cannot make purchases from this Gem, but you can purchase available domains directly on [godaddy.com](https://godaddy.com).
-
 ## Installation
 
 Download the code for this project using:
 
-    $ git clone https://github.com/ACAPP-dev/domain_project.git
+    $ git clone https://github.com/ACAPP-dev/familytree.git
 
-This Gem uses HTTParty for the API interface.  Please install this Gem prior to running the Domain Search Gem. Install using:
+Update Gem files using command:
 
-    $ gem install httparty
+    $ bundle install 
+    
+    or
+    
+    $ bundle update
 
-Next be sure to run:
-
-    $ bundle install
-
-Finally, you can start the program using:
-
-    $ bin/domain_search
-
-You can use this Domain Project Gem to see examples of how the GoDaddy API works.  Getting the API to work properly was the most challenging part of the project.
+    Note: A few unique Gems are needed including sinatra, sinatra-flash, and activerecord.  You may need to install these gems before running bundle install.
 
 ## Development
 
@@ -38,7 +40,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'acapp909'/domain_project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-Written by **Andrew Capp** in conjunction with _Flatiron Academy_ - November 2019
+Written by **Andrew Capp** in conjunction with _Flatiron Academy_ - February 2020
 
 ## License
 
