@@ -224,7 +224,7 @@ class FamilymembersController < ApplicationController
                     end
                     redirect "/familymembers/#{familymember.id}"
                 else
-                    #future message that update failed
+                    flash[:message] = "Error - Unable to Update!"
                     redirect "/familymembers/#{familymember.id}/edit"
                 end   
             else

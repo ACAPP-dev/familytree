@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secret"
+    register Sinatra::Flash
   end
 
   get '/' do
@@ -24,7 +25,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = user.id 
       redirect '/families'
     else
-      #message that login failed?
+      flash[:message] = "Incorrect Login - Please Try Again!"
       redirect '/login'
     end
   end

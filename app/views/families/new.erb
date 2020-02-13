@@ -1,5 +1,7 @@
 <h1>Create a New Family</h1>
 
+<p class="flash"><%= flash[:message] %></p>
+
 <form action="/families" method="POST">
     <p>Family Surname*: <input type="text" name="family[surname]" /></p>
     <br>

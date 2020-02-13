@@ -11,16 +11,17 @@ class UsersController < ApplicationController
         erb :'users/show'
     end
 
-    post '/users' dod
+    post '/users' do
         user = User.create(params[:user])
         if user.valid?
             user.created_time_stamp = Time.now
             user.enabled = true
             user.save
             session[:user_id] = user.id
-            #add message, user created successfully
+            flash[:message] = "User Successfully Created!"
             redirect '/families/new'
         else
+            flash[:message] = "Error: Unable to create user.  Must have unique username and email address."
             #add message, missing a required field (first name, username, password, or email)
             redirect '/users/new'
         end

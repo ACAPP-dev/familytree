@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2020_02_04_220908) do
     t.string "email"
     t.string "username"
     t.string "password_digest"
+    t.string "created_time_stamp"
+    t.boolean "enabled"
   end
 
 end

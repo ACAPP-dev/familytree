@@ -23,7 +23,9 @@
         <li class="nav_link"><a href="/">Home</a></li>
         <li class="nav_link"><a href="/families">Family Listing</a></li>
         <li class="nav_link"><a href="/familymembers">Family Members</a></li>
-        <li class="nav_link"><a href="/login">Login</a></li>
+        <% if !Helpers.logged_in?(session) %> 
+          <li class="nav_link"><a href="/login">Login</a></li>
+        <% end %>
         <li class="nav_link"><a href="/logout">Logout</a></li>
         <li id="nav_user">Current User: <%= @user? @user.username : "Not Logged In" %></li>
       </ul>

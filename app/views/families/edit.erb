@@ -1,5 +1,7 @@
 <h1>Edit Family Detail</h1>
 
+<p class="flash"><%= flash[:message] %></p>
+
 <form action="/families/<%= @family.id %>" method="post">
     <input type="hidden" name="_method" value="PATCH" />
 

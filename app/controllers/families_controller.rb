@@ -32,7 +32,7 @@ class FamiliesController < ApplicationController
                 user_now.save
                 redirect '/families'
             else
-                #add message about failure to add new family
+                flash[:message] = "Error - Unable to Create: Make sure all required field are complete!"
                 redirect '/families/new'
             end
         else
@@ -84,8 +84,8 @@ class FamiliesController < ApplicationController
                 if @family.valid?
                     redirect '/families'
                 else
-                    #message that update failed?
-                    redirect "/families/#{@family.id}"
+                    flash[:message] = "Error - Unable to Update!"
+                    redirect "/families/#{@family.id}/edit"
                 end
             else
                 redirect "/families/#{@family.id}"

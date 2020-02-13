@@ -1,5 +1,7 @@
 <h1>Create New User</h1>
 
+<p class="flash"><%= flash[:message] %></p>
+
 <form action="/users" method="POST">
     <div>
         <p>First Name*: <input type="text" name="user[first_name]" /></p>

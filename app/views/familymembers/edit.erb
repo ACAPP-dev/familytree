@@ -1,6 +1,8 @@
 <h1>Edit Family Member</h1>
 <h2>Family Name: <%= @family.surname %></h2>
 
+<p class="flash"><%= flash[:message] %></p>
+
 <form class="familymembers" action="/familymembers/<%= @familymember.id %>" method="POST">
     <input type="hidden" name="_method" value="PATCH">
     <h4>First Name: <input type="text" name="[familymember]first_name"
