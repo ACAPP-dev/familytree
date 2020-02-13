@@ -4,20 +4,20 @@ Create your own family tree and view relationships using flexible and easy to us
 
 ### Features
 <ul>
-    <li>Create unique username and password</li>
-    <li>Secure access to your families and familymembers</li>
-    <li>Create unlimited families and easily switch between families as needed</li>
-    <li>Create unlimited familymembers</li>
-    <li>View family tree for any familymember</li>
+    <li>Create unique username and password.</li>
+    <li>Secure access to your families and familymembers.</li>
+    <li>Create unlimited families and easily switch between families as needed.</li>
+    <li>Create unlimited familymembers.</li>
+    <li>View family tree for any familymember.</li>
 </ul>
 
-Please see the following link to see an overview of the program on YouTube: NEED
+Please see the following link to see an overview of the webapp on YouTube: https://youtu.be/QYip6aQGmZc
 
 My blog also talks about this project here: NEED
 
 ## Installation
 
-Download the code for this project using:
+Download the code for this webapp using:
 
     $ git clone https://github.com/ACAPP-dev/familytree.git
 
@@ -31,6 +31,8 @@ Update Gem files using command:
 
     Note: A few unique Gems are needed including sinatra, sinatra-flash, and activerecord.  You may need to install these gems before running bundle install.
 
+## Development
+
     You can use:
     
     $ shotgun
@@ -43,7 +45,7 @@ Update Gem files using command:
 
     $ rake console
 
-    to enter a pry session for debugging or exploring.
+    to enter a pry session for debugging and/or exploring.
 
 ## Contributing
 
@@ -57,4 +59,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the DomainProject project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ACAPP-dev/familytree/CODE_OF_CONDUCT.md).
+Everyone interacting in the DomainProject project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ACAPP-dev/familytree/blob/master/CODE_OF_CONDUCT.md).
