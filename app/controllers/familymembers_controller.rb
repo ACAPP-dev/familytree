@@ -20,6 +20,26 @@ class FamilymembersController < ApplicationController
         end
     end
 
+    get '/familymembers/search/:first_name' do
+        if Helpers.logged_in?(session)
+            @user = Helpers.current_user(session)
+            families = []
+            @familymembers = []
+            Family.all.each do |family|
+                families << family if family.users.any?{|user| user.id==@user.id}
+            end
+            families.each do |family|
+                family.familymembers.each do |familymember_instance|
+                    @familymembers << familymember_instance if familymember_instance.first_name.include?(params[:first_name])
+                end
+            end
+            @familymembers.flatten!
+            erb :'familymembers/index'
+        else
+            redirect '/login'
+        end
+    end
+
     get '/familymembers/new/:family_id' do
         if Helpers.logged_in?(session)
             @user = Helpers.current_user(session)
